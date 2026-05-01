@@ -4,9 +4,10 @@ interface SectionHeadProps {
   title?: React.ReactNode;
   meta?: string;
   metaHref?: string;
+  metaDownload?: boolean | string;
 }
 
-export function SectionHead({ anchor, label, title, meta, metaHref }: SectionHeadProps) {
+export function SectionHead({ anchor, label, title, meta, metaHref, metaDownload }: SectionHeadProps) {
   return (
     <div className="dev-section-head">
       <div style={{ display: "flex", flexDirection: "column", gap: 8 }}>
@@ -32,6 +33,7 @@ export function SectionHead({ anchor, label, title, meta, metaHref }: SectionHea
           href={metaHref}
           target="_blank"
           rel="noopener noreferrer"
+          download={metaDownload}
           className="mono"
           style={{ fontSize: 11, color: "var(--accent)", textDecoration: "underline", textUnderlineOffset: 3 }}
         >

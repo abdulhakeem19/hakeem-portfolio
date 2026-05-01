@@ -23,7 +23,8 @@ export default function ExperiencePage() {
               </>
             }
             meta="↓ download pdf"
-            metaHref="https://linkedin.com/in/abdul-hakeem19"
+            metaHref="/abdul-hakeem-resume.pdf"
+            metaDownload="abdul-hakeem-resume.pdf"
           />
         </motion.div>
 
