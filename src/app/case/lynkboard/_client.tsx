@@ -81,8 +81,8 @@ export default function LynkboardCasePage() {
 
         <motion.div
           variants={fadeUp}
-          className="dev-card"
-          style={{ padding: 0, marginTop: 48, display: "grid", gridTemplateColumns: "repeat(4, 1fr)" }}
+          className="dev-card case-meta-grid"
+          style={{ padding: 0, marginTop: 48 }}
         >
           {[
             ["role", "sole engineer · all platforms"],
@@ -136,7 +136,7 @@ export default function LynkboardCasePage() {
           initial="hidden"
           whileInView="show"
           viewport={{ once: true, margin: "-50px" }}
-          style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 16 }}
+          className="case-2col"
         >
           <motion.div variants={fadeUp} className="dev-card" style={{ padding: 32 }}>
             <div className="mono" style={{ fontSize: 11, color: "var(--accent)", marginBottom: 12 }}>// brief</div>
@@ -197,14 +197,14 @@ export default function LynkboardCasePage() {
           style={{ padding: 40, position: "relative" }}
         >
           <div className="dev-grid-bg" style={{ position: "absolute", inset: 0, opacity: 0.2 }} />
-          <div style={{ position: "relative", display: "grid", gridTemplateColumns: "1fr auto 1fr auto 1fr", alignItems: "stretch", gap: 0 }}>
+          <div className="case-arch-diagram" style={{ position: "relative" }}>
             <ArchBlock title="clients" items={["macOS menu bar", "iOS app", "iOS share extension"]} accent />
-            <ArchArrow label="encrypt · seal" />
+            <div className="case-arch-arrow"><ArchArrow label="encrypt · seal" /></div>
             <div style={{ display: "flex", flexDirection: "column", gap: 10 }}>
               <ArchBlock title="lan transport" items={["multipeer connectivity", "bonjour discovery", "200ms timeout"]} compact />
               <ArchBlock title="cryptography" items={["chacha20poly aead", "curve25519 keypairs", "qr key exchange"]} compact warm />
             </div>
-            <ArchArrow label="relay fallback" />
+            <div className="case-arch-arrow"><ArchArrow label="relay fallback" /></div>
             <div style={{ display: "flex", flexDirection: "column", gap: 10 }}>
               <ArchBlock title="supabase relay" items={["postgrest http post", "realtime websocket", "phoenix protocol"]} compact />
               <ArchBlock title="storage" items={["grdb · sqlite", "keychain keypairs", "app group container"]} compact />
@@ -217,7 +217,8 @@ export default function LynkboardCasePage() {
           initial="hidden"
           whileInView="show"
           viewport={{ once: true, margin: "-50px" }}
-          style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: 16, marginTop: 32 }}
+          className="case-3col"
+          style={{ marginTop: 32 }}
         >
           {[
             ["01", "transport", "MultipeerConnectivity for LAN — symmetric advertise+browse, sub-200ms pairing. Supabase relay as automatic fallback on cellular."],
@@ -256,7 +257,7 @@ export default function LynkboardCasePage() {
           initial="hidden"
           whileInView="show"
           viewport={{ once: true, margin: "-50px" }}
-          style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 16 }}
+          className="case-2col"
         >
           <motion.div variants={fadeUp} className="dev-term" style={{ minHeight: 340 }}>
             <div className="dev-term-bar">
@@ -312,8 +313,8 @@ export default function LynkboardCasePage() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
-          className="dev-card"
-          style={{ padding: 0, display: "grid", gridTemplateColumns: "repeat(4, 1fr)" }}
+          className="dev-card case-meta-grid"
+          style={{ padding: 0 }}
         >
           {[
             ["<1s", "lan sync latency"],
@@ -338,7 +339,7 @@ export default function LynkboardCasePage() {
 
       {/* prev / next */}
       <section className="dev-section" style={{ paddingTop: 0, position: "relative", zIndex: 1 }}>
-        <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 16 }}>
+        <div className="case-2col">
           <motion.div whileHover={{ x: -4 }} transition={{ duration: 0.2 }}>
             <Link href="/case/privachat" className="dev-card dev-spotlight" style={{ display: "block", padding: 28 }}>
               <div className="mono" style={{ fontSize: 11, color: "var(--text-3)" }}>← prev case</div>

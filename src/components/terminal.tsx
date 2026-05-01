@@ -13,17 +13,17 @@ const LINES: TerminalLine[] = [
   { type: "cmd", content: "whoami", delay: 400 },
   { type: "output", content: "abdul-hakeem", delay: 600 },
   { type: "cmd", content: "cat /now", delay: 900 },
-  { type: "output", content: "→ lynkboard 2.0 (rust core)", delay: 1100 },
+  { type: "output", content: "→ lynkboard 2.0 (sync rewrite)", delay: 1100 },
   { type: "output", content: "→ privachat v1.3 (group calls)", delay: 1300 },
   { type: "cmd", content: "ls ~/shipped", delay: 1700 },
   {
     type: "multivar",
-    content: ["privachat", "lynkboard", "maccleaner"],
+    content: ["privachat", "lynkboard", "maccleaner", "tradeslynk"],
     delay: 1900,
   },
   {
     type: "multivar",
-    content: ["tradeslynk", "neurosiv", "arvora"],
+    content: ["neurosiv", "arvora", "costos"],
     delay: 2100,
   },
 ];

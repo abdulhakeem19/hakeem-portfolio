@@ -3,9 +3,10 @@ interface SectionHeadProps {
   label: string;
   title?: React.ReactNode;
   meta?: string;
+  metaHref?: string;
 }
 
-export function SectionHead({ anchor, label, title, meta }: SectionHeadProps) {
+export function SectionHead({ anchor, label, title, meta, metaHref }: SectionHeadProps) {
   return (
     <div className="dev-section-head">
       <div style={{ display: "flex", flexDirection: "column", gap: 8 }}>
@@ -26,11 +27,21 @@ export function SectionHead({ anchor, label, title, meta }: SectionHeadProps) {
           </h2>
         )}
       </div>
-      {meta && (
+      {meta && metaHref ? (
+        <a
+          href={metaHref}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="mono"
+          style={{ fontSize: 11, color: "var(--accent)", textDecoration: "underline", textUnderlineOffset: 3 }}
+        >
+          {meta}
+        </a>
+      ) : meta ? (
         <div className="mono" style={{ fontSize: 11, color: "var(--text-3)" }}>
           {meta}
         </div>
-      )}
+      ) : null}
     </div>
   );
 }

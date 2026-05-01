@@ -81,8 +81,8 @@ export default function TradesLynkCasePage() {
 
         <motion.div
           variants={fadeUp}
-          className="dev-card"
-          style={{ padding: 0, marginTop: 48, display: "grid", gridTemplateColumns: "repeat(4, 1fr)" }}
+          className="dev-card case-meta-grid"
+          style={{ padding: 0, marginTop: 48 }}
         >
           {[
             ["role", "co-founder · lead engineer"],
@@ -136,7 +136,7 @@ export default function TradesLynkCasePage() {
           initial="hidden"
           whileInView="show"
           viewport={{ once: true, margin: "-50px" }}
-          style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 16 }}
+          className="case-2col"
         >
           <motion.div variants={fadeUp} className="dev-card" style={{ padding: 32 }}>
             <div className="mono" style={{ fontSize: 11, color: "var(--accent)", marginBottom: 12 }}>// brief</div>
@@ -197,14 +197,14 @@ export default function TradesLynkCasePage() {
           style={{ padding: 40, position: "relative" }}
         >
           <div className="dev-grid-bg" style={{ position: "absolute", inset: 0, opacity: 0.2 }} />
-          <div style={{ position: "relative", display: "grid", gridTemplateColumns: "1fr auto 1fr auto 1fr", alignItems: "stretch", gap: 0 }}>
+          <div className="case-arch-diagram" style={{ position: "relative" }}>
             <ArchBlock title="public surface" items={["126+ blade templates", "4 route files", "seo · sitemap · robots"]} accent />
-            <ArchArrow label="eloquent orm" />
+            <div className="case-arch-arrow"><ArchArrow label="eloquent orm" /></div>
             <div style={{ display: "flex", flexDirection: "column", gap: 10 }}>
               <ArchBlock title="domain" items={["35 eloquent models", "58 migrations", "rfqmatchingservice"]} compact />
               <ArchBlock title="trust engine" items={["trustscoreservice", "verificationservice", "locationservice"]} compact warm />
             </div>
-            <ArchArrow label="queue · cache" />
+            <div className="case-arch-arrow"><ArchArrow label="queue · cache" /></div>
             <div style={{ display: "flex", flexDirection: "column", gap: 10 }}>
               <ArchBlock title="infrastructure" items={["mysql production", "sqlite local dev", "smtp transactional"]} compact />
               <ArchBlock title="admin" items={["user suspension", "category crud", "content moderation"]} compact />
@@ -217,7 +217,8 @@ export default function TradesLynkCasePage() {
           initial="hidden"
           whileInView="show"
           viewport={{ once: true, margin: "-50px" }}
-          style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: 16, marginTop: 32 }}
+          className="case-3col"
+          style={{ marginTop: 32 }}
         >
           {[
             ["01", "rfq system", "Buyers post RFQs and an RFQMatchingService scoring engine matches them to relevant exporters by category, country, and verification tier."],
@@ -257,7 +258,7 @@ export default function TradesLynkCasePage() {
           initial="hidden"
           whileInView="show"
           viewport={{ once: true, margin: "-50px" }}
-          style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 16 }}
+          className="case-2col"
         >
           <motion.div variants={fadeUp} className="dev-term" style={{ minHeight: 320 }}>
             <div className="dev-term-bar">
@@ -308,8 +309,8 @@ export default function TradesLynkCasePage() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
-          className="dev-card"
-          style={{ padding: 0, display: "grid", gridTemplateColumns: "repeat(4, 1fr)" }}
+          className="dev-card case-meta-grid"
+          style={{ padding: 0 }}
         >
           {[
             ["82", "supported countries"],
@@ -334,7 +335,7 @@ export default function TradesLynkCasePage() {
 
       {/* prev / next */}
       <section className="dev-section" style={{ paddingTop: 0, position: "relative", zIndex: 1 }}>
-        <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 16 }}>
+        <div className="case-2col">
           <motion.div whileHover={{ x: -4 }} transition={{ duration: 0.2 }}>
             <Link href="/case/maccleaner" className="dev-card dev-spotlight" style={{ display: "block", padding: 28 }}>
               <div className="mono" style={{ fontSize: 11, color: "var(--text-3)" }}>← prev case</div>
@@ -342,9 +343,9 @@ export default function TradesLynkCasePage() {
             </Link>
           </motion.div>
           <motion.div whileHover={{ x: 4 }} transition={{ duration: 0.2 }}>
-            <Link href="/work" className="dev-card dev-spotlight" style={{ display: "block", padding: 28, textAlign: "right" }}>
-              <div className="mono" style={{ fontSize: 11, color: "var(--text-3)" }}>← /work</div>
-              <div style={{ fontSize: 24, fontWeight: 500, letterSpacing: "-0.02em", marginTop: 6 }}>all projects</div>
+            <Link href="/case/neurosiv" className="dev-card dev-spotlight" style={{ display: "block", padding: 28, textAlign: "right" }}>
+              <div className="mono" style={{ fontSize: 11, color: "var(--text-3)" }}>next case →</div>
+              <div style={{ fontSize: 24, fontWeight: 500, letterSpacing: "-0.02em", marginTop: 6 }}>Neurosiv</div>
             </Link>
           </motion.div>
         </div>

@@ -23,6 +23,7 @@ export default function ExperiencePage() {
               </>
             }
             meta="↓ download pdf"
+            metaHref="https://linkedin.com/in/abdul-hakeem19"
           />
         </motion.div>
 
@@ -37,11 +38,8 @@ export default function ExperiencePage() {
             <motion.div
               key={i}
               variants={fadeUp}
+              className="exp-roles-row"
               style={{
-                display: "grid",
-                gridTemplateColumns: "200px 1fr 240px",
-                gap: 32,
-                padding: 32,
                 borderBottom: i < ROLES.length - 1 ? "1px solid var(--line)" : "none",
               }}
             >
@@ -87,7 +85,7 @@ export default function ExperiencePage() {
           initial="hidden"
           whileInView="show"
           viewport={{ once: true, margin: "-50px" }}
-          style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 16 }}
+          className="exp-edu-grid"
         >
           {[
             ["2023", "M.Sc. computer science"],
@@ -111,8 +109,7 @@ export default function ExperiencePage() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-50px" }}
           transition={{ duration: 0.6 }}
-          className="dev-card"
-          style={{ padding: 32, display: "grid", gridTemplateColumns: "repeat(4, 1fr)", gap: 32 }}
+          className="dev-card exp-skills-grid"
         >
           {[
             ["frontend", ["react", "next.js", "react native", "angular", "typescript", "tailwind"]],

@@ -2,7 +2,7 @@ export interface Project {
   id: string;
   label: string;
   year: string;
-  status: "live" | "beta" | "shipping" | "paused" | "demo";
+  status: "live" | "beta" | "shipping" | "active" | "paused" | "demo";
   name: string;
   kind: string;
   tagline: string;
@@ -63,24 +63,37 @@ export const ALL_PROJECTS: Project[] = [
     id: "neurosiv",
     label: "05",
     year: "2023",
-    status: "paused",
+    status: "active",
     name: "Neurosiv",
     kind: "ai studio · co-founder",
     tagline:
-      "AI-first engineering studio building intelligent product systems and prototypes.",
-    tech: ["react", "next.js", "node"],
-    metrics: [["02", "mvps"]],
+      "AI-first innovation studio — architecting the intelligent future. 4+ clients, 2 live AI products, 8 service lines.",
+    tech: ["react", "typescript", "vite", "gsap", "tailwind", "openai"],
+    metrics: [["4+", "clients"], ["99%", "satisfaction"], ["2", "live products"]],
   },
   {
     id: "arvora",
     label: "06",
-    year: "2023",
+    year: "2024",
     status: "demo",
     name: "Arvora",
-    kind: "e-commerce · demo",
-    tagline: "Modern e-commerce UI with reusable component architecture.",
-    tech: ["next.js", "tailwind"],
-    metrics: [["<1.2s", "lcp"]],
+    kind: "e-commerce · full-stack",
+    tagline:
+      "Production-grade e-commerce platform — real Razorpay/Stripe payments, admin dashboard with Recharts analytics, and a 7-state order lifecycle.",
+    tech: ["next.js 16", "supabase", "zustand", "razorpay", "stripe", "tailwind v4"],
+    metrics: [["7", "order states"], ["3", "payment gateways"], ["<1.2s", "lcp"]],
+  },
+  {
+    id: "costos",
+    label: "07",
+    year: "2024",
+    status: "active",
+    name: "Costos",
+    kind: "internal tool · startup ops",
+    tagline:
+      "Internal finance & operations dashboard for early-stage startups — expense tracking, client pipeline, founder P&L, and role-based access.",
+    tech: ["react 18", "vite", "supabase", "recharts", "tailwind"],
+    metrics: [["9", "modules"], ["rbac", "auth"], ["0", "spreadsheets"]],
   },
 ];
 
@@ -88,6 +101,7 @@ export const STATUS_COLOR: Record<Project["status"], string> = {
   live: "green",
   shipping: "green",
   beta: "amber",
+  active: "amber",
   paused: "",
   demo: "",
 };
@@ -144,14 +158,14 @@ export const HOME_ACTIVITY = [
   {
     d: "22 apr",
     kind: "commit",
-    repo: "lynkboard/core-rs",
+    repo: "lynkboard/sync",
     msg: "feat: framing layer + transport spike",
     sha: "7d6e5f3",
   },
   {
     d: "18 apr",
     kind: "note",
-    repo: "writing/",
+    repo: "notes/",
     msg: "notes on hybrid lan/cloud sync",
     sha: "e7f6a5b",
   },
@@ -173,9 +187,9 @@ export const HOME_ACTIVITY = [
 
 export const NOW_ACTIVITY = [
   ["26 apr", "shipped", "privachat 1.2.4 — fixed approval race condition on iOS background restore"],
-  ["22 apr", "wrote", "notes on hybrid lan/cloud sync — published to /writing"],
+  ["22 apr", "wrote", "notes on hybrid lan/cloud sync"],
   ["18 apr", "read", "CRDTs: The Hard Parts (Martin Kleppmann)"],
-  ["12 apr", "built", "lynkboard rust core: framing layer + transport spike"],
+  ["12 apr", "built", "lynkboard 2.0 — sync layer: framing layer + transport spike"],
   ["05 apr", "talked", "internal onexfort tech talk on real-time architectures"],
   ["28 mar", "started", "lynkboard 2.0 planning. architecture doc drafted"],
 ] as const;

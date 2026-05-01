@@ -4,6 +4,7 @@ import { motion } from "framer-motion";
 import { Footer } from "@/components/footer";
 import { DevStatus } from "@/components/dev-status";
 import { fadeUp, stagger } from "@/lib/animations";
+import { useState, useEffect } from "react";
 
 const CONTACTS = [
   { k: "email", v: "abdul.hakeem5764@gmail.com", big: true, href: "mailto:abdul.hakeem5764@gmail.com" },
@@ -13,6 +14,12 @@ const CONTACTS = [
 ];
 
 export default function ContactPage() {
+  const [monthYear, setMonthYear] = useState("may 2026");
+  useEffect(() => {
+    const d = new Date();
+    const m = d.toLocaleDateString("en-IN", { month: "long", timeZone: "Asia/Kolkata" }).toLowerCase();
+    setMonthYear(`${m} ${d.getFullYear()}`);
+  }, []);
   return (
     <main className="dev-page page-top">
       <div style={{ position: "fixed", inset: 0, backgroundImage: "radial-gradient(circle at 1px 1px, rgba(255,255,255,0.04) 1px, transparent 0)", backgroundSize: "24px 24px", pointerEvents: "none", zIndex: 0 }} />
@@ -29,7 +36,7 @@ export default function ContactPage() {
             <span className="line" />
             /contact
           </div>
-          <DevStatus>available · may 2026</DevStatus>
+          <DevStatus>available · {monthYear}</DevStatus>
         </motion.div>
 
         <motion.h1
@@ -48,7 +55,7 @@ export default function ContactPage() {
           variants={stagger}
           initial="hidden"
           animate="show"
-          style={{ display: "grid", gridTemplateColumns: "1.4fr 1fr", gap: 16 }}
+          className="contact-grid"
         >
           {/* contact links */}
           <motion.div variants={fadeUp} className="dev-card" style={{ padding: 0, overflow: "hidden" }}>
@@ -69,7 +76,7 @@ export default function ContactPage() {
                 }}
               >
                 <span className="mono" style={{ fontSize: 11, color: "var(--text-3)", textTransform: "uppercase", letterSpacing: "0.1em", minWidth: 90 }}>// {item.k}</span>
-                <span style={{ flex: 1, fontSize: item.big ? 32 : 18, fontWeight: item.big ? 500 : 400, letterSpacing: "-0.02em", color: "var(--text)" }}>{item.v}</span>
+                <span className={item.big ? "contact-value" : undefined} style={{ flex: 1, minWidth: 0, fontSize: item.big ? 32 : 18, fontWeight: item.big ? 500 : 400, letterSpacing: "-0.02em", color: "var(--text)" }}>{item.v}</span>
                 <span style={{ color: "var(--accent)", fontSize: 14 }}>↗</span>
               </motion.a>
             ))}

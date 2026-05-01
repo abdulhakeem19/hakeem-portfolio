@@ -15,5 +15,8 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { url: `${base}/case/lynkboard`, lastModified: now, changeFrequency: "monthly", priority: 0.85 },
     { url: `${base}/case/maccleaner`, lastModified: now, changeFrequency: "monthly", priority: 0.85 },
     { url: `${base}/case/tradeslynk`, lastModified: now, changeFrequency: "monthly", priority: 0.85 },
+    { url: `${base}/case/neurosiv`, lastModified: now, changeFrequency: "monthly", priority: 0.85 },
+    { url: `${base}/case/arvora`, lastModified: now, changeFrequency: "monthly", priority: 0.85 },
+    { url: `${base}/case/costos`, lastModified: now, changeFrequency: "monthly", priority: 0.85 },
   ];
 }

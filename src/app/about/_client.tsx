@@ -1,6 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
+import Image from "next/image";
 import { Footer } from "@/components/footer";
 import { SectionHead } from "@/components/section-head";
 import { fadeUp, staggerSlow as stagger } from "@/lib/animations";
@@ -19,7 +20,7 @@ export default function AboutPage() {
           variants={stagger}
           initial="hidden"
           animate="show"
-          style={{ display: "grid", gridTemplateColumns: "1fr 380px", gap: 40, alignItems: "start" }}
+          className="about-grid"
         >
           <motion.div variants={fadeUp}>
             <h1 style={{ fontSize: "clamp(40px, 5vw, 64px)", fontWeight: 500, letterSpacing: "-0.035em", lineHeight: 1, marginBottom: 24 }}>
@@ -46,17 +47,19 @@ export default function AboutPage() {
           <motion.div
             variants={fadeUp}
             className="dev-card"
-            style={{ aspectRatio: "4/5", position: "relative", overflow: "hidden", background: "radial-gradient(circle at 50% 30%, var(--accent-soft), #08080a 60%)" }}
+            style={{ aspectRatio: "4/5", position: "relative", overflow: "hidden", background: "#08080a" }}
           >
-            <div className="dev-grid-bg" style={{ position: "absolute", inset: 0, opacity: 0.4 }} />
-            <div style={{ position: "absolute", inset: 0, display: "flex", alignItems: "center", justifyContent: "center" }}>
-              <div className="mono" style={{ fontSize: 11, color: "var(--text-3)", textTransform: "uppercase", letterSpacing: "0.15em" }}>
-                [ portrait ]
-              </div>
-            </div>
-            <div style={{ position: "absolute", bottom: 16, left: 16, right: 16, display: "flex", justifyContent: "space-between", fontSize: 10, color: "var(--text-3)" }} className="mono">
-              <span>shot @ marina</span>
-              <span>apr 2026</span>
+            <Image
+              src="/Profile_image.png"
+              alt="Abdul Hakeem"
+              fill
+              style={{ objectFit: "cover", objectPosition: "center top" }}
+              sizes="(max-width: 900px) 100vw, 380px"
+            />
+            <div style={{ position: "absolute", inset: 0, background: "linear-gradient(to bottom, transparent 60%, rgba(8,8,10,0.7) 100%)" }} />
+            <div style={{ position: "absolute", bottom: 16, left: 16, right: 16, display: "flex", justifyContent: "space-between", fontSize: 10, color: "rgba(255,255,255,0.5)" }} className="mono">
+              <span>// initialized 2001</span>
+              <span>jan 19</span>
             </div>
           </motion.div>
         </motion.div>
@@ -72,12 +75,12 @@ export default function AboutPage() {
           initial="hidden"
           whileInView="show"
           viewport={{ once: true, margin: "-50px" }}
-          style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: 16 }}
+          className="interests-grid"
         >
           {[
-            { t: "reading", d: "Designing Data-Intensive Applications. Working in Public.", icon: "◆" },
+            { t: "reading", d: "Designing Data-Intensive Applications. Working in Public. The occasional manhwa arc that goes on way too long.", icon: "◆" },
             { t: "learning", d: "CRDTs · Rust · distributed systems primitives.", icon: "◇" },
-            { t: "off-screen", d: "Marina walks · filter coffee · mechanical keyboards.", icon: "◈" },
+            { t: "off-screen", d: "Anime when the week earns it. PC gaming on weekends. Travelling when possible, eating well always.", icon: "◈" },
           ].map((b) => (
             <motion.div
               key={b.t}

@@ -80,8 +80,8 @@ export default function MacCleanerCasePage() {
 
         <motion.div
           variants={fadeUp}
-          className="dev-card"
-          style={{ padding: 0, marginTop: 48, display: "grid", gridTemplateColumns: "repeat(4, 1fr)" }}
+          className="dev-card case-meta-grid"
+          style={{ padding: 0, marginTop: 48 }}
         >
           {[
             ["role", "sole engineer · product design"],
@@ -135,7 +135,7 @@ export default function MacCleanerCasePage() {
           initial="hidden"
           whileInView="show"
           viewport={{ once: true, margin: "-50px" }}
-          style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 16 }}
+          className="case-2col"
         >
           <motion.div variants={fadeUp} className="dev-card" style={{ padding: 32 }}>
             <div className="mono" style={{ fontSize: 11, color: "var(--accent)", marginBottom: 12 }}>// brief</div>
@@ -196,14 +196,14 @@ export default function MacCleanerCasePage() {
           style={{ padding: 40, position: "relative" }}
         >
           <div className="dev-grid-bg" style={{ position: "absolute", inset: 0, opacity: 0.2 }} />
-          <div style={{ position: "relative", display: "grid", gridTemplateColumns: "1fr auto 1fr auto 1fr", alignItems: "stretch", gap: 0 }}>
+          <div className="case-arch-diagram" style={{ position: "relative" }}>
             <ArchBlock title="app shell" items={["swiftui views", "hardened runtime", "full disk access"]} accent />
-            <ArchArrow label="xpc · ipc" />
+            <div className="case-arch-arrow"><ArchArrow label="xpc · ipc" /></div>
             <div style={{ display: "flex", flexDirection: "column", gap: 10 }}>
               <ArchBlock title="core framework" items={["14 scan rules", "taskgroup parallel", "rules engine"]} compact />
               <ArchBlock title="privileged helper" items={["smappservice daemon", "protected directories", "xpc contract"]} compact warm />
             </div>
-            <ArchArrow label="ed25519 verify" />
+            <div className="case-arch-arrow"><ArchArrow label="ed25519 verify" /></div>
             <div style={{ display: "flex", flexDirection: "column", gap: 10 }}>
               <ArchBlock title="rule pack" items={["signed rule definitions", "updateable separately", "runtime verification"]} compact />
               <ArchBlock title="deletion" items={["~/.trash/maccleanerpro/", "30-day undo window", "permanent removal opt-in"]} compact />
@@ -216,7 +216,8 @@ export default function MacCleanerCasePage() {
           initial="hidden"
           whileInView="show"
           viewport={{ once: true, margin: "-50px" }}
-          style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: 16, marginTop: 32 }}
+          className="case-3col"
+          style={{ marginTop: 32 }}
         >
           {[
             ["01", "smart scan", "14 cleanup categories run in parallel Swift TaskGroups — user caches, Xcode artifacts, browser caches, app leftovers, logs. Results grouped and ranked by reclaimed size."],
@@ -256,7 +257,7 @@ export default function MacCleanerCasePage() {
           initial="hidden"
           whileInView="show"
           viewport={{ once: true, margin: "-50px" }}
-          style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 16 }}
+          className="case-2col"
         >
           <motion.div variants={fadeUp} className="dev-term" style={{ minHeight: 340 }}>
             <div className="dev-term-bar">
@@ -310,8 +311,8 @@ export default function MacCleanerCasePage() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
-          className="dev-card"
-          style={{ padding: 0, display: "grid", gridTemplateColumns: "repeat(4, 1fr)" }}
+          className="dev-card case-meta-grid"
+          style={{ padding: 0 }}
         >
           {[
             ["24.6GB", "avg space reclaimed"],
@@ -336,7 +337,7 @@ export default function MacCleanerCasePage() {
 
       {/* prev / next */}
       <section className="dev-section" style={{ paddingTop: 0, position: "relative", zIndex: 1 }}>
-        <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 16 }}>
+        <div className="case-2col">
           <motion.div whileHover={{ x: -4 }} transition={{ duration: 0.2 }}>
             <Link href="/case/lynkboard" className="dev-card dev-spotlight" style={{ display: "block", padding: 28 }}>
               <div className="mono" style={{ fontSize: 11, color: "var(--text-3)" }}>← prev case</div>

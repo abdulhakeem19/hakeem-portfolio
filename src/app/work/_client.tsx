@@ -13,6 +13,9 @@ const CASE_HREFS: Record<string, string> = {
   lynkboard: "/case/lynkboard",
   maccleaner: "/case/maccleaner",
   tradeslynk: "/case/tradeslynk",
+  neurosiv: "/case/neurosiv",
+  arvora: "/case/arvora",
+  costos: "/case/costos",
 };
 
 function BigProject({ project: p }: { project: Project }) {
@@ -108,7 +111,7 @@ export default function WorkPage() {
             label="/work · selected projects"
             title={
               <>
-                Four products.{" "}
+                Seven projects.{" "}
                 <span className="serif" style={{ color: "var(--accent)" }}>
                   Three platforms
                 </span>
@@ -124,7 +127,7 @@ export default function WorkPage() {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: 0.2, duration: 0.4 }}
-          style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: 24 }}
+          style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: 24, flexWrap: "wrap", gap: 12 }}
         >
           <div style={{ display: "flex", gap: 4 }}>
             {["all", "mobile", "macOS", "web", "co-founded"].map((t, i) => (
@@ -142,8 +145,10 @@ export default function WorkPage() {
         <motion.div
           variants={stagger}
           initial="hidden"
-          animate="show"
-          style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 16, marginBottom: 16 }}
+          whileInView="show"
+          viewport={{ once: true, margin: "0px" }}
+          className="work-2col"
+          style={{ marginBottom: 16 }}
         >
           {featured.slice(0, 2).map((p) => (
             <BigProject key={p.id} project={p} />
@@ -156,24 +161,25 @@ export default function WorkPage() {
           initial="hidden"
           whileInView="show"
           viewport={{ once: true, margin: "-50px" }}
-          style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 16, marginBottom: 16 }}
+          className="work-2col"
+          style={{ marginBottom: 16 }}
         >
           {featured.slice(2, 4).map((p) => (
             <BigProject key={p.id} project={p} />
           ))}
         </motion.div>
 
-        {/* small 2-grid for rest */}
+        {/* bottom 3-col for rest */}
         {rest.length > 0 && (
           <motion.div
             variants={stagger}
             initial="hidden"
             whileInView="show"
             viewport={{ once: true, margin: "-50px" }}
-            style={{ display: "grid", gridTemplateColumns: "repeat(2, 1fr)", gap: 16 }}
+            className="work-3col"
           >
             {rest.map((p) => (
-              <SmallProject key={p.id} project={p} />
+              <BigProject key={p.id} project={p} />
             ))}
           </motion.div>
         )}

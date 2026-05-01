@@ -23,7 +23,7 @@ export default function NowPage() {
                 <span className="serif" style={{ color: "var(--accent)" }}>right now</span>.
               </>
             }
-            meta="updated 27 apr 2026"
+            meta="updated may 2026"
           />
         </motion.div>
 
@@ -31,7 +31,7 @@ export default function NowPage() {
           variants={stagger}
           initial="hidden"
           animate="show"
-          style={{ display: "grid", gridTemplateColumns: "1.5fr 1fr", gap: 16 }}
+          className="now-grid"
         >
           {/* primary focus card */}
           <motion.div
@@ -48,13 +48,13 @@ export default function NowPage() {
               <h2 style={{ fontSize: "clamp(28px, 3vw, 40px)", fontWeight: 500, letterSpacing: "-0.03em", lineHeight: 1.05, marginBottom: 20 }}>
                 <span className="serif" style={{ color: "var(--accent)" }}>Lynkboard 2.0</span>
                 <br />
-                <span style={{ color: "var(--text-3)" }}>rewriting the sync core in rust</span>
+                <span style={{ color: "var(--text-3)" }}>rebuilding the sync layer</span>
                 <br />
                 for sub-20ms lan latency.
               </h2>
               <p style={{ fontSize: 14, color: "var(--text-2)", maxWidth: 540, marginBottom: 28 }}>
-                The Swift implementation works but the framing layer does too much. New core is a single binary,
-                FFI&apos;d into both apps, with deterministic conflict resolution via CRDTs.
+                The current framing layer does too much. New sync core is a standalone Swift package
+                shared across both apps, with deterministic conflict resolution via CRDTs.
               </p>
               <div style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: 20, paddingTop: 20, borderTop: "1px dashed var(--line-2)" }}>
                 {[["started", "mar 2026"], ["target", "q3 2026"], ["progress", "34%"]].map(([k, v]) => (
@@ -118,14 +118,9 @@ export default function NowPage() {
               viewport={{ once: true }}
               transition={{ delay: i * 0.06, duration: 0.3 }}
               whileHover={{ background: "rgba(255,255,255,0.02)" }}
+              className="now-activity-row"
               style={{
-                display: "grid",
-                gridTemplateColumns: "90px 110px 1fr",
-                gap: 24,
-                padding: "16px 24px",
                 borderBottom: i < a.length - 1 ? "1px solid var(--line)" : "none",
-                alignItems: "center",
-                fontSize: 13,
               }}
             >
               <div className="mono" style={{ fontSize: 12, color: "var(--text-3)" }}>{d}</div>

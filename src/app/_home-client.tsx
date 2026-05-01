@@ -12,9 +12,30 @@ import {
   PrivaChatPreview,
   LynkboardPreview,
   MacCleanerPreview,
+  NeurosivPreview,
+  ArvoraPreview,
+  CostosPreview,
 } from "@/components/project-previews";
 import { PRINCIPLES, HOME_ACTIVITY } from "@/lib/data";
 import { fadeUp, stagger } from "@/lib/animations";
+import { useState, useEffect } from "react";
+
+function useISTTime() {
+  const [time, setTime] = useState("");
+  useEffect(() => {
+    const fmt = () =>
+      new Date().toLocaleTimeString("en-IN", {
+        timeZone: "Asia/Kolkata",
+        hour: "numeric",
+        minute: "2-digit",
+        hour12: true,
+      }).toLowerCase();
+    setTime(fmt());
+    const id = setInterval(() => setTime(fmt()), 10000);
+    return () => clearInterval(id);
+  }, []);
+  return time;
+}
 
 function FeatureCard({
   label,
@@ -115,6 +136,10 @@ function FeatureCard({
 }
 
 export default function HomePage() {
+  const istTime = useISTTime();
+  const now = new Date();
+  const currentMonth = now.toLocaleDateString("en-IN", { month: "long", timeZone: "Asia/Kolkata" }).toLowerCase();
+  const currentYear = now.getFullYear();
   return (
     <main className="dev-page page-top">
       {/* dot grid */}
@@ -138,14 +163,7 @@ export default function HomePage() {
         initial="hidden"
         animate="show"
       >
-        <div
-          style={{
-            display: "grid",
-            gridTemplateColumns: "1.6fr 1fr",
-            gap: 16,
-            gridAutoRows: "min-content",
-          }}
-        >
+        <div className="hero-grid">
           {/* main hero */}
           <motion.div variants={fadeUp} style={{ gridRow: "span 2" }}>
             <SpotlightCard style={{ padding: 48, minHeight: 520, position: "relative", height: "100%" }}>
@@ -169,9 +187,9 @@ export default function HomePage() {
                 }}
               >
                 <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start" }}>
-                  <DevStatus>available · may 2026</DevStatus>
+                  <DevStatus>available · {currentMonth} {currentYear}</DevStatus>
                   <span className="mono" style={{ fontSize: 11, color: "var(--text-3)" }}>
-                    chennai · ist · 16:42
+                    chennai · tamilnadu · {istTime}
                   </span>
                 </div>
 
@@ -229,9 +247,9 @@ export default function HomePage() {
               <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 8, marginTop: 16, flex: 1 }}>
                 {[
                   ["2.5+", "years"],
-                  ["06", "shipped"],
+                  ["07", "shipped"],
                   ["02", "co-founded"],
-                  ["80+", "countries"],
+                  ["12+", "stacks"],
                 ].map(([n, l]) => (
                   <motion.div
                     key={l}
@@ -288,7 +306,7 @@ export default function HomePage() {
                 .
               </>
             }
-            meta="06 / 06"
+            meta="07 / 07"
           />
         </motion.div>
 
@@ -297,12 +315,7 @@ export default function HomePage() {
           initial="hidden"
           whileInView="show"
           viewport={{ once: true, margin: "-50px" }}
-          style={{
-            display: "grid",
-            gridTemplateColumns: "1.5fr 1fr",
-            gridTemplateRows: "auto auto",
-            gap: 16,
-          }}
+          className="work-featured-grid"
         >
           <motion.div variants={fadeUp} style={{ gridRow: "span 2" }}>
             <FeatureCard
@@ -361,6 +374,28 @@ export default function HomePage() {
             </FeatureCard>
           </motion.div>
         </motion.div>
+
+        {/* secondary row — neurosiv · arvora · costos */}
+        <motion.div
+          variants={stagger}
+          initial="hidden"
+          whileInView="show"
+          viewport={{ once: true, margin: "-50px" }}
+          className="work-3col"
+          style={{ marginTop: 16 }}
+        >
+          {[
+            { label: "05", badge: <span className="dev-chip amber mono">● active</span>, title: "Neurosiv", kind: "ai studio · co-founder", tagline: "AI-first innovation studio — 4+ clients, 2 live AI products, 8 service lines.", tech: ["react", "typescript", "gsap"], href: "/case/neurosiv", Preview: NeurosivPreview },
+            { label: "06", badge: <span className="dev-chip mono">● demo</span>, title: "Arvora", kind: "e-commerce · full-stack", tagline: "Production-grade e-commerce — real Razorpay/Stripe payments, admin analytics, 7-state orders.", tech: ["next.js 16", "supabase", "razorpay"], href: "/case/arvora", Preview: ArvoraPreview },
+            { label: "07", badge: <span className="dev-chip amber mono">● active</span>, title: "Costos", kind: "internal tool · startup ops", tagline: "Startup ops dashboard replacing spreadsheets — expenses, clients, P&L, RBAC.", tech: ["react 18", "supabase", "recharts"], href: "/case/costos", Preview: CostosPreview },
+          ].map((p) => (
+            <motion.div key={p.label} variants={fadeUp}>
+              <FeatureCard label={p.label} badge={p.badge} title={p.title} kind={p.kind} tagline={p.tagline} tech={p.tech} href={p.href}>
+                <p.Preview />
+              </FeatureCard>
+            </motion.div>
+          ))}
+        </motion.div>
       </section>
 
       {/* PRINCIPLES */}
@@ -391,7 +426,7 @@ export default function HomePage() {
           initial="hidden"
           whileInView="show"
           viewport={{ once: true, margin: "-50px" }}
-          style={{ display: "grid", gridTemplateColumns: "repeat(4, 1fr)", gap: 12 }}
+          className="principles-grid"
         >
           {PRINCIPLES.map((p) => (
             <motion.div
@@ -454,21 +489,16 @@ export default function HomePage() {
               viewport={{ once: true }}
               transition={{ delay: i * 0.06, duration: 0.3 }}
               whileHover={{ background: "rgba(255,255,255,0.02)" }}
+              className="activity-row"
               style={{
-                display: "grid",
-                gridTemplateColumns: "90px 100px 200px 1fr 100px",
-                gap: 16,
-                padding: "14px 24px",
                 borderBottom: i < HOME_ACTIVITY.length - 1 ? "1px solid var(--line)" : "none",
-                alignItems: "center",
-                fontSize: 13,
               }}
             >
               <div className="mono" style={{ fontSize: 12, color: "var(--text-3)" }}>{row.d}</div>
               <span className="dev-chip accent mono" style={{ justifySelf: "flex-start" }}>{row.kind}</span>
-              <div className="mono" style={{ fontSize: 12, color: "var(--text-2)" }}>{row.repo}</div>
+              <div className="mono hide-mobile" style={{ fontSize: 12, color: "var(--text-2)" }}>{row.repo}</div>
               <div style={{ color: "var(--text)" }}>{row.msg}</div>
-              <div className="mono" style={{ fontSize: 11, color: "var(--text-4)", textAlign: "right" }}>{row.sha}</div>
+              <div className="mono hide-mobile" style={{ fontSize: 11, color: "var(--text-4)", textAlign: "right" }}>{row.sha}</div>
             </motion.div>
           ))}
         </motion.div>

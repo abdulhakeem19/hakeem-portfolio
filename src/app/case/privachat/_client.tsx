@@ -152,8 +152,8 @@ export default function PrivaChatCasePage() {
 
         <motion.div
           variants={fadeUp}
-          className="dev-card"
-          style={{ padding: 0, marginTop: 48, display: "grid", gridTemplateColumns: "repeat(4, 1fr)" }}
+          className="dev-card case-meta-grid"
+          style={{ padding: 0, marginTop: 48 }}
         >
           {[
             ["role", "sole engineer · system design"],
@@ -217,7 +217,7 @@ export default function PrivaChatCasePage() {
           initial="hidden"
           whileInView="show"
           viewport={{ once: true, margin: "-50px" }}
-          style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 16 }}
+          className="case-2col"
         >
           <motion.div variants={fadeUp} className="dev-card" style={{ padding: 32 }}>
             <div className="mono" style={{ fontSize: 11, color: "var(--accent)", marginBottom: 12 }}>// brief</div>
@@ -277,14 +277,14 @@ export default function PrivaChatCasePage() {
           style={{ padding: 40, position: "relative" }}
         >
           <div className="dev-grid-bg" style={{ position: "absolute", inset: 0, opacity: 0.2 }} />
-          <div style={{ position: "relative", display: "grid", gridTemplateColumns: "1fr auto 1fr auto 1fr", alignItems: "stretch", gap: 0 }}>
+          <div className="case-arch-diagram" style={{ position: "relative" }}>
             <ArchBlock title="clients" items={["react native ios", "react native android", "admin web (next.js)"]} accent />
-            <ArchArrow label="wss · tls 1.3" />
+            <div className="case-arch-arrow"><ArchArrow label="wss · tls 1.3" /></div>
             <div style={{ display: "flex", flexDirection: "column", gap: 10 }}>
               <ArchBlock title="edge" items={["auth · jwt", "rate limit", "schema validation"]} compact />
               <ArchBlock title="moderation" items={["phone · email regex", "handle detection", "obfuscation scorer"]} compact warm />
             </div>
-            <ArchArrow label="pub/sub" />
+            <div className="case-arch-arrow"><ArchArrow label="pub/sub" /></div>
             <div style={{ display: "flex", flexDirection: "column", gap: 10 }}>
               <ArchBlock title="control" items={["postgres (supabase)", "approval state machine", "audit log"]} compact />
               <ArchBlock title="realtime" items={["redis pub/sub", "websocket fanout", "sfu (mediasoup)"]} compact />
@@ -297,7 +297,8 @@ export default function PrivaChatCasePage() {
           initial="hidden"
           whileInView="show"
           viewport={{ once: true, margin: "-50px" }}
-          style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: 16, marginTop: 32 }}
+          className="case-3col"
+          style={{ marginTop: 32 }}
         >
           {[
             ["01", "control", "admin queue, role assignments, approval state. postgres source of truth, every state change audited."],
@@ -337,7 +338,7 @@ export default function PrivaChatCasePage() {
           initial="hidden"
           whileInView="show"
           viewport={{ once: true, margin: "-50px" }}
-          style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 16 }}
+          className="case-2col"
         >
           <motion.div variants={fadeUp} className="dev-term" style={{ minHeight: 360 }}>
             <div className="dev-term-bar">
@@ -413,8 +414,8 @@ export default function PrivaChatCasePage() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-50px" }}
           transition={{ duration: 0.6 }}
-          className="dev-card"
-          style={{ padding: 0, display: "grid", gridTemplateColumns: "repeat(4, 1fr)" }}
+          className="dev-card case-meta-grid"
+          style={{ padding: 0 }}
         >
           {[
             ["<80ms", "p95 message delivery"],
@@ -439,7 +440,7 @@ export default function PrivaChatCasePage() {
 
       {/* prev / next */}
       <section className="dev-section" style={{ paddingTop: 0, position: "relative", zIndex: 1 }}>
-        <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 16 }}>
+        <div className="case-2col">
           <motion.div whileHover={{ x: -4 }} transition={{ duration: 0.2 }}>
             <Link href="/work" className="dev-card dev-spotlight" style={{ display: "block", padding: 28 }}>
               <div className="mono" style={{ fontSize: 11, color: "var(--text-3)" }}>← /work</div>
