@@ -42,7 +42,7 @@ export function Nav() {
         <div className="dev-nav-links">
           {NAV_LINKS.map((link) => (
             <Link
-              key={link.href}
+              key={link.label}
               href={link.href}
               className={isActive(link.href, link.activePrefix) ? "active" : ""}
             >
@@ -78,7 +78,7 @@ export function Nav() {
         </button>
         {NAV_LINKS.map((link) => (
           <Link
-            key={link.href}
+            key={link.label}
             href={link.href}
             className={isActive(link.href, link.activePrefix) ? "active" : ""}
             onClick={() => setOpen(false)}

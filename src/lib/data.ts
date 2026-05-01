@@ -149,48 +149,33 @@ export const ROLES = [
 
 export const HOME_ACTIVITY = [
   {
-    d: "26 apr",
-    kind: "shipped",
-    repo: "privachat/ios",
-    msg: "fix: approval race condition on background restore",
-    sha: "a4f2e91",
-  },
-  {
-    d: "22 apr",
+    d: "01 may",
     kind: "commit",
-    repo: "lynkboard/sync",
-    msg: "feat: framing layer + transport spike",
-    sha: "7d6e5f3",
+    repo: "lynkboard",
+    msg: "Add mac UI, theming, pairing & Supabase",
+    sha: "8896617",
   },
   {
-    d: "18 apr",
-    kind: "note",
-    repo: "notes/",
-    msg: "notes on hybrid lan/cloud sync",
-    sha: "e7f6a5b",
+    d: "27 apr",
+    kind: "commit",
+    repo: "mac-cleaner-pro",
+    msg: "Use CSS hero animations for faster LCP",
+    sha: "de987bd",
   },
   {
-    d: "12 apr",
-    kind: "release",
-    repo: "maccleaner",
-    msg: "v2.4.0 — smart scan v2 + activity log undo",
-    sha: "4c3d2e1",
-  },
-  {
-    d: "05 apr",
-    kind: "talk",
-    repo: "onexfort/internal",
-    msg: "real-time architectures · brown bag",
-    sha: "8e7f6a5",
+    d: "25 apr",
+    kind: "commit",
+    repo: "privachat-mobile",
+    msg: "Heartbeat + timeouts for calls; add HMS patch",
+    sha: "5748446",
   },
 ];
 
 export const NOW_ACTIVITY = [
-  ["26 apr", "shipped", "privachat 1.2.4 — fixed approval race condition on iOS background restore"],
-  ["22 apr", "wrote", "notes on hybrid lan/cloud sync"],
+  ["01 may", "commit", "lynkboard — Add mac UI, theming, pairing & Supabase"],
+  ["27 apr", "commit", "mac-cleaner-pro — Use CSS hero animations for faster LCP"],
+  ["25 apr", "commit", "privachat — Heartbeat + timeouts for calls; add HMS patch"],
   ["18 apr", "read", "CRDTs: The Hard Parts (Martin Kleppmann)"],
-  ["12 apr", "built", "lynkboard 2.0 — sync layer: framing layer + transport spike"],
-  ["05 apr", "talked", "internal onexfort tech talk on real-time architectures"],
   ["28 mar", "started", "lynkboard 2.0 planning. architecture doc drafted"],
 ] as const;
 
