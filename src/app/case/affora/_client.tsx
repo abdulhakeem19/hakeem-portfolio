@@ -526,7 +526,7 @@ export default function AfforaCasePage() {
                 </li>
               ))}
             </ul>
-            <Link href="/affora/policy" className="mono" style={{ display: "inline-flex", alignItems: "center", gap: 6, marginTop: 20, fontSize: 12, color: A.green, textDecoration: "underline", textUnderlineOffset: 3 }}>
+            <Link href="/affora/privacy" className="mono" style={{ display: "inline-flex", alignItems: "center", gap: 6, marginTop: 20, fontSize: 12, color: A.green, textDecoration: "underline", textUnderlineOffset: 3 }}>
               read the full privacy policy →
             </Link>
           </motion.div>

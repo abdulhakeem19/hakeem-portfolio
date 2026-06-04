@@ -19,6 +19,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { url: `${base}/case/neurosiv`, lastModified: now, changeFrequency: "monthly", priority: 0.85 },
     { url: `${base}/case/arvora`, lastModified: now, changeFrequency: "monthly", priority: 0.85 },
     { url: `${base}/case/costos`, lastModified: now, changeFrequency: "monthly", priority: 0.85 },
-    { url: `${base}/affora/policy`, lastModified: now, changeFrequency: "yearly", priority: 0.5 },
+    { url: `${base}/affora/privacy`, lastModified: now, changeFrequency: "yearly", priority: 0.5 },
   ];
 }
