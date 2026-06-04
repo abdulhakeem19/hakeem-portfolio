@@ -37,10 +37,10 @@ export function Footer() {
         <h4>projects</h4>
         <ul>
           {[
+            ["/case/affora", "affora"],
             ["/case/privachat", "privachat"],
             ["/case/lynkboard", "lynkboard"],
             ["/case/maccleaner", "mac cleaner"],
-            ["/case/tradeslynk", "tradeslynk"],
           ].map(([href, label]) => (
             <li key={label}>
               <Link href={href} style={{ color: "var(--text-3)" }}>

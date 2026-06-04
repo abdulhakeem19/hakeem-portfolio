@@ -1,0 +1,315 @@
+
+<style>
+  *{box-sizing:border-box;margin:0;padding:0;}
+  .page{padding:8px 0 24px;font-family:system-ui,sans-serif;}
+  .tab-row{display:flex;gap:0;margin-bottom:0;border-bottom:1px solid var(--color-border-tertiary);}
+  .tab{padding:8px 16px;font-size:12px;font-weight:500;color:var(--color-text-secondary);cursor:pointer;border-bottom:2px solid transparent;margin-bottom:-1px;user-select:none;}
+  .tab.active{color:#27B07A;border-bottom-color:#27B07A;}
+  .panel{display:none;padding-top:16px;}
+  .panel.active{display:block;}
+  .code{background:#07120D;border-radius:12px;padding:14px 16px;overflow-x:auto;margin-bottom:12px;}
+  .code pre{font-family:monospace;font-size:11px;line-height:1.85;color:#C8D8CC;white-space:pre;}
+  .kw{color:#27B07A;} .cls{color:#7EEAB8;} .val{color:#F59E0B;}
+  .cmt{color:#3d6b4a;} .str{color:#9FE1CB;} .ann{color:#60A5FA;}
+  .file-label{font-size:9px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--color-text-tertiary);margin-bottom:6px;}
+  .note{font-size:11px;color:var(--color-text-secondary);line-height:1.6;background:var(--color-background-secondary);border-radius:8px;padding:10px 12px;margin-bottom:10px;}
+  .note strong{color:var(--color-text-primary);}
+  .checklist{display:flex;flex-direction:column;gap:6px;}
+  .phase{margin-bottom:20px;}
+  .phase-title{font-size:11px;font-weight:700;color:var(--color-text-primary);margin-bottom:8px;display:flex;align-items:center;gap:8px;}
+  .phase-badge{font-size:9px;padding:2px 8px;border-radius:10px;font-weight:600;}
+  .p1{background:rgba(39,176,122,0.12);color:#27B07A;}
+  .p2{background:rgba(245,158,11,0.12);color:#F59E0B;}
+  .p3{background:rgba(96,165,250,0.12);color:#60A5FA;}
+  .ci{display:flex;align-items:flex-start;gap:8px;font-size:11px;color:var(--color-text-secondary);line-height:1.5;padding:6px 10px;background:var(--color-background-primary);border-radius:8px;border:0.5px solid var(--color-border-tertiary);}
+  .ci-box{width:14px;height:14px;border-radius:3px;border:1.5px solid var(--color-border-secondary);flex-shrink:0;margin-top:1px;}
+  .ci-box.done{background:#27B07A;border-color:#27B07A;}
+  .ci strong{color:var(--color-text-primary);}
+  .warn-box{background:rgba(245,158,11,0.08);border:0.5px solid rgba(245,158,11,0.2);border-radius:10px;padding:11px 14px;margin-bottom:10px;}
+  .warn-title{font-size:11px;font-weight:600;color:#F59E0B;margin-bottom:4px;}
+  .warn-body{font-size:11px;color:var(--color-text-secondary);line-height:1.6;}
+  .warn-body code{font-family:monospace;font-size:10px;color:#F59E0B;}
+</style>
+
+<h2 class="sr-only">Affora theme implementation — Dart files, ColorScheme bridge, and migration checklist</h2>
+<div class="page">
+
+  <div class="tab-row">
+    <div class="tab active" onclick="show('colors')">affora_colors.dart</div>
+    <div class="tab" onclick="show('theme')">affora_theme.dart</div>
+    <div class="tab" onclick="show('migration')">Migration checklist</div>
+  </div>
+
+  <div id="p-colors" class="panel active">
+    <div class="file-label">lib/core/theme/affora_colors.dart</div>
+    <div class="code"><pre><span class="kw">import</span> <span class="str">'package:flutter/material.dart'</span>;
+
+<span class="cmt">// ─────────────────────────────────────────────────
+// AfforaColors — single source of truth for color.
+// Never write a raw Color(0xFF...) inside a widget.
+// Usage: Theme.of(context).extension&lt;AfforaColors&gt;()!
+// Or:    context.affora   (via the extension below)
+// ─────────────────────────────────────────────────</span>
+
+<span class="kw">class</span> <span class="cls">AfforaColors</span> <span class="kw">extends</span> <span class="cls">ThemeExtension</span>&lt;<span class="cls">AfforaColors</span>&gt; {
+  <span class="kw">const</span> <span class="cls">AfforaColors</span>({
+    <span class="kw">required this</span>.bg,
+    <span class="kw">required this</span>.surface,
+    <span class="kw">required this</span>.surfaceElevated,
+    <span class="kw">required this</span>.surfaceFeatured,
+    <span class="kw">required this</span>.green,
+    <span class="kw">required this</span>.greenPressed,
+    <span class="kw">required this</span>.greenTint,
+    <span class="kw">required this</span>.greenMuted,
+    <span class="kw">required this</span>.textHero,
+    <span class="kw">required this</span>.textPrimary,
+    <span class="kw">required this</span>.textSecondary,
+    <span class="kw">required this</span>.textMuted,
+    <span class="kw">required this</span>.border,
+    <span class="kw">required this</span>.borderEmphasis,
+    <span class="kw">required this</span>.warning,
+    <span class="kw">required this</span>.danger,
+    <span class="kw">required this</span>.info,
+  });
+
+  <span class="kw">final</span> <span class="cls">Color</span> bg;
+  <span class="kw">final</span> <span class="cls">Color</span> surface;
+  <span class="kw">final</span> <span class="cls">Color</span> surfaceElevated;
+  <span class="kw">final</span> <span class="cls">Color</span> surfaceFeatured;
+
+  <span class="kw">final</span> <span class="cls">Color</span> green;          <span class="cmt">// financial signal only</span>
+  <span class="kw">final</span> <span class="cls">Color</span> greenPressed;   <span class="cmt">// active tap state on green CTAs</span>
+  <span class="kw">final</span> <span class="cls">Color</span> greenTint;      <span class="cmt">// badge fills, uplift bg</span>
+  <span class="kw">final</span> <span class="cls">Color</span> greenMuted;     <span class="cmt">// nav selected, toggles, chips</span>
+
+  <span class="kw">final</span> <span class="cls">Color</span> textHero;       <span class="cmt">// amounts, ring number</span>
+  <span class="kw">final</span> <span class="cls">Color</span> textPrimary;    <span class="cmt">// card titles, names</span>
+  <span class="kw">final</span> <span class="cls">Color</span> textSecondary;  <span class="cmt">// body, metadata, sub-labels</span>
+  <span class="kw">final</span> <span class="cls">Color</span> textMuted;      <span class="cmt">// section headers, captions only</span>
+
+  <span class="kw">final</span> <span class="cls">Color</span> border;         <span class="cmt">// rgba green 10%</span>
+  <span class="kw">final</span> <span class="cls">Color</span> borderEmphasis; <span class="cmt">// rgba green 20%</span>
+
+  <span class="kw">final</span> <span class="cls">Color</span> warning;
+  <span class="kw">final</span> <span class="cls">Color</span> danger;
+  <span class="kw">final</span> <span class="cls">Color</span> info;
+
+  <span class="cmt">// ── The one dark instance ──────────────────────</span>
+  <span class="kw">static const</span> dark = <span class="cls">AfforaColors</span>(
+    bg:               <span class="cls">Color</span>(<span class="val">0xFF07120D</span>),
+    surface:          <span class="cls">Color</span>(<span class="val">0xFF0D1F16</span>),
+    surfaceElevated:  <span class="cls">Color</span>(<span class="val">0xFF102019</span>),
+    surfaceFeatured:  <span class="cls">Color</span>(<span class="val">0xFF162C20</span>),
+    green:            <span class="cls">Color</span>(<span class="val">0xFF27B07A</span>),
+    greenPressed:     <span class="cls">Color</span>(<span class="val">0xFF22A06B</span>),
+    greenTint:        <span class="cls">Color</span>(<span class="val">0x1F27B07A</span>),  <span class="cmt">// ≈12%</span>
+    greenMuted:       <span class="cls">Color</span>(<span class="val">0xFF1A4A30</span>),
+    textHero:         <span class="cls">Color</span>(<span class="val">0xFFF5F7F6</span>),
+    textPrimary:      <span class="cls">Color</span>(<span class="val">0xFFC8D8CC</span>),
+    textSecondary:    <span class="cls">Color</span>(<span class="val">0xFF8B9B92</span>),
+    textMuted:        <span class="cls">Color</span>(<span class="val">0xFF6B8A75</span>),
+    border:           <span class="cls">Color</span>(<span class="val">0x1A27B07A</span>),  <span class="cmt">// ≈10%</span>
+    borderEmphasis:   <span class="cls">Color</span>(<span class="val">0x3327B07A</span>),  <span class="cmt">// ≈20%</span>
+    warning:          <span class="cls">Color</span>(<span class="val">0xFFF59E0B</span>),
+    danger:           <span class="cls">Color</span>(<span class="val">0xFFEF4444</span>),
+    info:             <span class="cls">Color</span>(<span class="val">0xFF60A5FA</span>),
+  );
+
+  <span class="ann">@override</span>
+  <span class="cls">AfforaColors</span> copyWith({
+    <span class="cls">Color</span>? bg, <span class="cls">Color</span>? surface, <span class="cls">Color</span>? surfaceElevated,
+    <span class="cls">Color</span>? surfaceFeatured, <span class="cls">Color</span>? green, <span class="cls">Color</span>? greenPressed,
+    <span class="cls">Color</span>? greenTint, <span class="cls">Color</span>? greenMuted, <span class="cls">Color</span>? textHero,
+    <span class="cls">Color</span>? textPrimary, <span class="cls">Color</span>? textSecondary, <span class="cls">Color</span>? textMuted,
+    <span class="cls">Color</span>? border, <span class="cls">Color</span>? borderEmphasis,
+    <span class="cls">Color</span>? warning, <span class="cls">Color</span>? danger, <span class="cls">Color</span>? info,
+  }) => <span class="cls">AfforaColors</span>(
+    bg: bg ?? <span class="kw">this</span>.bg,
+    surface: surface ?? <span class="kw">this</span>.surface,
+    surfaceElevated: surfaceElevated ?? <span class="kw">this</span>.surfaceElevated,
+    surfaceFeatured: surfaceFeatured ?? <span class="kw">this</span>.surfaceFeatured,
+    green: green ?? <span class="kw">this</span>.green,
+    greenPressed: greenPressed ?? <span class="kw">this</span>.greenPressed,
+    greenTint: greenTint ?? <span class="kw">this</span>.greenTint,
+    greenMuted: greenMuted ?? <span class="kw">this</span>.greenMuted,
+    textHero: textHero ?? <span class="kw">this</span>.textHero,
+    textPrimary: textPrimary ?? <span class="kw">this</span>.textPrimary,
+    textSecondary: textSecondary ?? <span class="kw">this</span>.textSecondary,
+    textMuted: textMuted ?? <span class="kw">this</span>.textMuted,
+    border: border ?? <span class="kw">this</span>.border,
+    borderEmphasis: borderEmphasis ?? <span class="kw">this</span>.borderEmphasis,
+    warning: warning ?? <span class="kw">this</span>.warning,
+    danger: danger ?? <span class="kw">this</span>.danger,
+    info: info ?? <span class="kw">this</span>.info,
+  );
+
+  <span class="ann">@override</span>
+  <span class="cls">AfforaColors</span> lerp(<span class="cls">ThemeExtension</span>&lt;<span class="cls">AfforaColors</span>&gt;? other, <span class="kw">double</span> t) {
+    <span class="kw">if</span> (other <span class="kw">is</span>! <span class="cls">AfforaColors</span>) <span class="kw">return this</span>;
+    <span class="kw">return</span> <span class="cls">AfforaColors</span>(
+      bg:               <span class="cls">Color</span>.lerp(bg, other.bg, t)!,
+      surface:          <span class="cls">Color</span>.lerp(surface, other.surface, t)!,
+      surfaceElevated:  <span class="cls">Color</span>.lerp(surfaceElevated, other.surfaceElevated, t)!,
+      surfaceFeatured:  <span class="cls">Color</span>.lerp(surfaceFeatured, other.surfaceFeatured, t)!,
+      green:            <span class="cls">Color</span>.lerp(green, other.green, t)!,
+      greenPressed:     <span class="cls">Color</span>.lerp(greenPressed, other.greenPressed, t)!,
+      greenTint:        <span class="cls">Color</span>.lerp(greenTint, other.greenTint, t)!,
+      greenMuted:       <span class="cls">Color</span>.lerp(greenMuted, other.greenMuted, t)!,
+      textHero:         <span class="cls">Color</span>.lerp(textHero, other.textHero, t)!,
+      textPrimary:      <span class="cls">Color</span>.lerp(textPrimary, other.textPrimary, t)!,
+      textSecondary:    <span class="cls">Color</span>.lerp(textSecondary, other.textSecondary, t)!,
+      textMuted:        <span class="cls">Color</span>.lerp(textMuted, other.textMuted, t)!,
+      border:           <span class="cls">Color</span>.lerp(border, other.border, t)!,
+      borderEmphasis:   <span class="cls">Color</span>.lerp(borderEmphasis, other.borderEmphasis, t)!,
+      warning:          <span class="cls">Color</span>.lerp(warning, other.warning, t)!,
+      danger:           <span class="cls">Color</span>.lerp(danger, other.danger, t)!,
+      info:             <span class="cls">Color</span>.lerp(info, other.info, t)!,
+    );
+  }
+}
+
+<span class="cmt">// ── Convenience extension ──────────────────────
+// context.affora.green   instead of
+// Theme.of(context).extension&lt;AfforaColors&gt;()!.green</span>
+<span class="kw">extension</span> <span class="cls">AfforaTheme</span> <span class="kw">on</span> <span class="cls">BuildContext</span> {
+  <span class="cls">AfforaColors</span> <span class="kw">get</span> affora =>
+      <span class="cls">Theme</span>.of(<span class="kw">this</span>).extension&lt;<span class="cls">AfforaColors</span>&gt;()!;
+}</pre></div>
+  </div>
+
+  <div id="p-theme" class="panel">
+    <div class="file-label">lib/core/theme/affora_theme.dart</div>
+    <div class="warn-box">
+      <div class="warn-title">The critical trap to avoid</div>
+      <div class="warn-body">Do NOT set <code>colorScheme: ColorScheme.fromSeed(seedColor: Color(0xFF27B07A))</code> — Material will derive every interactive color from that seed and paint <code>green</code> onto nav bars, switches, checkboxes, and progress indicators. Use <code>greenMuted</code> for the scheme primary instead.</div>
+    </div>
+    <div class="code"><pre><span class="kw">import</span> <span class="str">'package:flutter/material.dart'</span>;
+<span class="kw">import</span> <span class="str">'affora_colors.dart'</span>;
+
+<span class="kw">class</span> <span class="cls">AfforaTheme</span> {
+  <span class="kw">static</span> <span class="cls">ThemeData</span> get dark {
+    <span class="kw">const</span> c = <span class="cls">AfforaColors</span>.dark;
+
+    <span class="kw">return</span> <span class="cls">ThemeData</span>(
+      useMaterial3: <span class="kw">true</span>,
+      brightness: <span class="cls">Brightness</span>.dark,
+      scaffoldBackgroundColor: c.bg,
+
+      <span class="cmt">// ── ColorScheme: greenMuted drives all M3 chrome ──</span>
+      colorScheme: <span class="cls">ColorScheme</span>.dark(
+        primary:          c.greenMuted,    <span class="cmt">// nav, toggles, chips</span>
+        onPrimary:        c.textHero,
+        primaryContainer: c.surfaceFeatured,
+        onPrimaryContainer: c.textPrimary,
+        secondary:        c.surface,
+        onSecondary:      c.textPrimary,
+        surface:          c.surface,
+        onSurface:        c.textPrimary,
+        surfaceContainerHighest: c.surfaceElevated,
+        error:            c.danger,
+        onError:          c.textHero,
+        outline:          c.border,
+        outlineVariant:   c.border,
+      ),
+
+      <span class="cmt">// ── NavigationBar ─────────────────────────────</span>
+      navigationBarTheme: <span class="cls">NavigationBarThemeData</span>(
+        backgroundColor:     c.surface,
+        indicatorColor:      c.greenMuted,   <span class="cmt">// NOT c.green</span>
+        iconTheme: <span class="cls">WidgetStateProperty</span>.resolveWith((states) {
+          <span class="kw">if</span> (states.contains(<span class="cls">WidgetState</span>.selected)) {
+            <span class="kw">return</span> <span class="cls">IconThemeData</span>(color: c.green, size: <span class="val">22</span>);
+          }
+          <span class="kw">return</span> <span class="cls">IconThemeData</span>(color: c.textMuted, size: <span class="val">22</span>);
+        }),
+        labelTextStyle: <span class="cls">WidgetStateProperty</span>.resolveWith((states) {
+          <span class="kw">if</span> (states.contains(<span class="cls">WidgetState</span>.selected)) {
+            <span class="kw">return</span> <span class="cls">TextStyle</span>(
+              color: c.green, fontSize: <span class="val">10</span>,
+              fontWeight: <span class="cls">FontWeight</span>.w600);
+          }
+          <span class="kw">return</span> <span class="cls">TextStyle</span>(color: c.textMuted, fontSize: <span class="val">10</span>);
+        }),
+      ),
+
+      <span class="cmt">// ── Cards ─────────────────────────────────────</span>
+      cardTheme: <span class="cls">CardTheme</span>(
+        color: c.surface,
+        surfaceTintColor: <span class="cls">Colors</span>.transparent,
+        shape: <span class="cls">RoundedRectangleBorder</span>(
+          borderRadius: <span class="cls">BorderRadius</span>.circular(<span class="val">12</span>),
+          side: <span class="cls">BorderSide</span>(color: c.border, width: <span class="val">0.5</span>),
+        ),
+        elevation: <span class="val">0</span>,
+      ),
+
+      <span class="cmt">// ── Typography ────────────────────────────────</span>
+      textTheme: <span class="cls">TextTheme</span>(
+        displayLarge:  <span class="cls">TextStyle</span>(color: c.textHero,
+                         fontWeight: <span class="cls">FontWeight</span>.w600),
+        titleLarge:    <span class="cls">TextStyle</span>(color: c.textPrimary,
+                         fontWeight: <span class="cls">FontWeight</span>.w500),
+        bodyLarge:     <span class="cls">TextStyle</span>(color: c.textPrimary),
+        bodyMedium:    <span class="cls">TextStyle</span>(color: c.textSecondary),
+        bodySmall:     <span class="cls">TextStyle</span>(color: c.textMuted),
+        labelSmall:    <span class="cls">TextStyle</span>(color: c.textMuted,
+                         letterSpacing: <span class="val">0.08</span>),
+      ),
+
+      <span class="cmt">// ── Register the extension ────────────────────</span>
+      extensions: <span class="kw">const</span> [<span class="cls">AfforaColors</span>.dark],
+    );
+  }
+}</pre></div>
+    <div class="note"><strong>Why the nav icon uses c.green but the indicator uses c.greenMuted:</strong> The icon is the financial-signal green — it's a positive "you're here" confirmation. The background indicator slab behind it uses greenMuted so it doesn't read as a data signal. The icon is semantic. The slab is chrome.</div>
+  </div>
+
+  <div id="p-migration" class="panel">
+    <div class="phase">
+      <div class="phase-title"><span class="phase-badge p1">Phase 1 — Before push</span> Foundation + Home</div>
+      <div class="checklist">
+        <div class="ci"><div class="ci-box"></div><div>Create <strong>lib/core/theme/affora_colors.dart</strong> — paste the full ThemeExtension above</div></div>
+        <div class="ci"><div class="ci-box"></div><div>Create <strong>lib/core/theme/affora_theme.dart</strong> — paste the ThemeData above</div></div>
+        <div class="ci"><div class="ci-box"></div><div>Update <strong>main.dart / app.dart</strong>: <code>theme: AfforaTheme.dark</code>, remove old theme config</div></div>
+        <div class="ci"><div class="ci-box"></div><div>Update <strong>home_screen.dart</strong>: replace all raw Color() with <code>context.affora.*</code></div></div>
+        <div class="ci"><div class="ci-box"></div><div>Update the <strong>Safe-to-Spend ring</strong>: stroke to <code>c.green</code>, track to <code>c.border</code>, amount text to <code>c.textHero</code></div></div>
+        <div class="ci"><div class="ci-box"></div><div>Update the <strong>trio row</strong>: Reality Balance → <code>c.green</code>, Spent Today elevated → <code>c.warning</code>, Days Left → <code>c.textHero</code></div></div>
+        <div class="ci"><div class="ci-box"></div><div>Update <strong>decision cards</strong>: card bg → <code>c.surface</code>, border → <code>c.border</code>, dots semantic (red/amber/green)</div></div>
+        <div class="ci"><div class="ci-box"></div><div>Update <strong>Turning Point card</strong>: bg → <code>c.surfaceFeatured</code>, border → <code>c.borderEmphasis</code>, uplift bg → <code>c.greenTint</code></div></div>
+        <div class="ci"><div class="ci-box"></div><div><strong>Real-device contrast check</strong>: Redmi/low-end device, outdoor brightness, check textSecondary legibility</div></div>
+        <div class="ci"><div class="ci-box"></div><div>Run <strong>flutter analyze</strong> — confirm 0 errors. Run <strong>flutter test</strong> — confirm 39/39.</div></div>
+      </div>
+    </div>
+    <div class="phase">
+      <div class="phase-title"><span class="phase-badge p2">Phase 2 — After internal testing</span> Tabs + planning screens</div>
+      <div class="checklist">
+        <div class="ci"><div class="ci-box"></div><div>Goals tab, Debt section, Progress tab, Family tab</div></div>
+        <div class="ci"><div class="ci-box"></div><div>Onboarding screens (first impression matters)</div></div>
+        <div class="ci"><div class="ci-box"></div><div>Pro purchase screen (appears in upsells, must look premium)</div></div>
+        <div class="ci"><div class="ci-box"></div><div>Settings — Personal finance section</div></div>
+      </div>
+    </div>
+    <div class="phase">
+      <div class="phase-title"><span class="phase-badge p3">Phase 3 — Before public launch</span> Power screens</div>
+      <div class="checklist">
+        <div class="ci"><div class="ci-box"></div><div>Transaction detail, Reports, All-transactions hub</div></div>
+        <div class="ci"><div class="ci-box"></div><div>Forecast, Net Worth, Smart Rules</div></div>
+        <div class="ci"><div class="ci-box"></div><div>Accounts, Categories, Merchant rules</div></div>
+        <div class="ci"><div class="ci-box"></div><div>Final: search codebase for any remaining raw <code>Color(0xFF</code> in widget files — replace all</div></div>
+      </div>
+    </div>
+    <div class="warn-box" style="margin-top:4px;">
+      <div class="warn-title">The one regression to watch for in Phase 1</div>
+      <div class="warn-body">The existing theme likely uses <code>AppColors.primaryGreen</code> or similar static values directly in widgets. After registering the ThemeExtension, those static references still compile — they just don't go through the theme. Do a project-wide search for <code>Color(0xFF57</code> and <code>AppColors.</code> before calling Phase 1 done. Every raw reference is a future inconsistency.</div>
+    </div>
+  </div>
+
+</div>
+<script>
+  function show(id) {
+    document.querySelectorAll('.panel').forEach(p => p.classList.remove('active'));
+    document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+    document.getElementById('p-' + id).classList.add('active');
+    event.target.classList.add('active');
+  }
+</script>

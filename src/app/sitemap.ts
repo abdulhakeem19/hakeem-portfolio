@@ -11,6 +11,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { url: `${base}/experience`, lastModified: now, changeFrequency: "monthly", priority: 0.7 },
     { url: `${base}/contact`, lastModified: now, changeFrequency: "monthly", priority: 0.7 },
     { url: `${base}/now`, lastModified: now, changeFrequency: "weekly", priority: 0.6 },
+    { url: `${base}/case/affora`, lastModified: now, changeFrequency: "monthly", priority: 0.85 },
     { url: `${base}/case/privachat`, lastModified: now, changeFrequency: "monthly", priority: 0.85 },
     { url: `${base}/case/lynkboard`, lastModified: now, changeFrequency: "monthly", priority: 0.85 },
     { url: `${base}/case/maccleaner`, lastModified: now, changeFrequency: "monthly", priority: 0.85 },
@@ -18,5 +19,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { url: `${base}/case/neurosiv`, lastModified: now, changeFrequency: "monthly", priority: 0.85 },
     { url: `${base}/case/arvora`, lastModified: now, changeFrequency: "monthly", priority: 0.85 },
     { url: `${base}/case/costos`, lastModified: now, changeFrequency: "monthly", priority: 0.85 },
+    { url: `${base}/affora/privacy-policy`, lastModified: now, changeFrequency: "yearly", priority: 0.5 },
   ];
 }

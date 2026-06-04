@@ -9,6 +9,7 @@ import { PREVIEW_MAP } from "@/components/project-previews";
 import { fadeUp, stagger } from "@/lib/animations";
 
 const CASE_HREFS: Record<string, string> = {
+  affora: "/case/affora",
   privachat: "/case/privachat",
   lynkboard: "/case/lynkboard",
   maccleaner: "/case/maccleaner",
@@ -111,7 +112,7 @@ export default function WorkPage() {
             label="/work · selected projects"
             title={
               <>
-                Seven projects.{" "}
+                Eight projects.{" "}
                 <span className="serif" style={{ color: "var(--accent)" }}>
                   Three platforms
                 </span>

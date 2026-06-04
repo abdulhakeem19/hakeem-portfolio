@@ -9,9 +9,9 @@ import { AnimatedTerminal } from "@/components/terminal";
 import { Ticker } from "@/components/ticker";
 import { SpotlightCard } from "@/components/spotlight-card";
 import {
+  AfforaPreview,
   PrivaChatPreview,
   LynkboardPreview,
-  MacCleanerPreview,
   NeurosivPreview,
   ArvoraPreview,
   CostosPreview,
@@ -306,7 +306,7 @@ export default function HomePage() {
                 .
               </>
             }
-            meta="07 / 07"
+            meta="08 / 08"
           />
         </motion.div>
 
@@ -322,6 +322,26 @@ export default function HomePage() {
               label="01"
               badge={
                 <>
+                  <span className="dev-chip amber mono">● beta</span>
+                  <span className="dev-chip mono">2026</span>
+                </>
+              }
+              title="Affora"
+              kind="mobile · fintech · offline-first"
+              tagline="Behavioral finance app — your Reality Balance and a daily Safe-to-Spend number, with bank & UPI notifications parsed on-device. No READ_SMS."
+              tech={["flutter", "drift / sqlite", "riverpod", "nestjs"]}
+              href="/case/affora"
+              tall
+            >
+              <AfforaPreview />
+            </FeatureCard>
+          </motion.div>
+
+          <motion.div variants={fadeUp}>
+            <FeatureCard
+              label="02"
+              badge={
+                <>
                   <span className="dev-chip green mono">● live</span>
                   <span className="dev-chip mono">2025</span>
                 </>
@@ -330,7 +350,7 @@ export default function HomePage() {
               kind="mobile · real-time · security"
               tagline="Secure messaging & call platform with admin-controlled communication workflows."
               tech={["react native", "node", "websockets", "postgres"]}
-              tall
+              href="/case/privachat"
             >
               <PrivaChatPreview />
             </FeatureCard>
@@ -338,7 +358,7 @@ export default function HomePage() {
 
           <motion.div variants={fadeUp}>
             <FeatureCard
-              label="02"
+              label="03"
               badge={
                 <>
                   <span className="dev-chip amber mono">● beta</span>
@@ -352,25 +372,6 @@ export default function HomePage() {
               href="/work"
             >
               <LynkboardPreview />
-            </FeatureCard>
-          </motion.div>
-
-          <motion.div variants={fadeUp}>
-            <FeatureCard
-              label="03"
-              badge={
-                <>
-                  <span className="dev-chip green mono">● shipping</span>
-                  <span className="dev-chip mono">2024</span>
-                </>
-              }
-              title="Mac Cleaner Pro"
-              kind="macOS · product"
-              tagline="Native macOS optimizer with smart scan and 30-day undo."
-              tech={["swiftui", "next.js"]}
-              href="/work"
-            >
-              <MacCleanerPreview />
             </FeatureCard>
           </motion.div>
         </motion.div>

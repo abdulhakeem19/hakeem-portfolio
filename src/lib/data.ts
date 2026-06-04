@@ -12,8 +12,20 @@ export interface Project {
 
 export const ALL_PROJECTS: Project[] = [
   {
-    id: "privachat",
+    id: "affora",
     label: "01",
+    year: "2026",
+    status: "beta",
+    name: "Affora",
+    kind: "mobile · fintech · offline-first",
+    tagline:
+      "Behavioral finance app that shows your Reality Balance and a daily Safe-to-Spend number — bank & UPI notifications parsed on-device, no READ_SMS, fully offline-first.",
+    tech: ["flutter", "dart", "drift / sqlite", "riverpod", "nestjs", "postgres"],
+    metrics: [["on-device", "txn parsing"], ["offline", "first"], ["₹99/mo", "affora pro"]],
+  },
+  {
+    id: "privachat",
+    label: "02",
     year: "2025",
     status: "live",
     name: "PrivaChat",
@@ -25,7 +37,7 @@ export const ALL_PROJECTS: Project[] = [
   },
   {
     id: "lynkboard",
-    label: "02",
+    label: "03",
     year: "2024",
     status: "beta",
     name: "Lynkboard",
@@ -37,7 +49,7 @@ export const ALL_PROJECTS: Project[] = [
   },
   {
     id: "maccleaner",
-    label: "03",
+    label: "04",
     year: "2024",
     status: "shipping",
     name: "Mac Cleaner Pro",
@@ -49,7 +61,7 @@ export const ALL_PROJECTS: Project[] = [
   },
   {
     id: "tradeslynk",
-    label: "04",
+    label: "05",
     year: "2023",
     status: "live",
     name: "TradesLynk",
@@ -61,7 +73,7 @@ export const ALL_PROJECTS: Project[] = [
   },
   {
     id: "neurosiv",
-    label: "05",
+    label: "06",
     year: "2023",
     status: "active",
     name: "Neurosiv",
@@ -73,7 +85,7 @@ export const ALL_PROJECTS: Project[] = [
   },
   {
     id: "arvora",
-    label: "06",
+    label: "07",
     year: "2024",
     status: "demo",
     name: "Arvora",
@@ -85,7 +97,7 @@ export const ALL_PROJECTS: Project[] = [
   },
   {
     id: "costos",
-    label: "07",
+    label: "08",
     year: "2024",
     status: "active",
     name: "Costos",
