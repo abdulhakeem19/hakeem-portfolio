@@ -5,10 +5,10 @@ export const metadata: Metadata = {
   title: "Affora — Privacy Policy",
   description:
     "Affora's privacy policy. Affora is an offline-first, privacy-first behavioral finance app: transaction notifications are parsed on-device, there is no READ_SMS permission, and cloud sync is optional and sign-in-gated.",
-  alternates: { canonical: "https://buildwithhakeem.dev/affora/privacy-policy" },
+  alternates: { canonical: "https://buildwithhakeem.dev/affora/policy" },
   openGraph: {
     type: "article",
-    url: "https://buildwithhakeem.dev/affora/privacy-policy",
+    url: "https://buildwithhakeem.dev/affora/policy",
     title: "Affora — Privacy Policy",
     description:
       "Privacy-first, offline-first finance app. On-device parsing, no READ_SMS, optional sign-in-gated cloud sync.",
