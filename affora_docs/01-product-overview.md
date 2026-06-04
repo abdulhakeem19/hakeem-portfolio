@@ -6,6 +6,7 @@
 > this?** (Purchase Consequences) — plus the emotional hook **"When does this end?"**
 > (Turning Points). Everything else is demoted so it never competes with these.
 > See the full **Affora Constitution** in the project memory and
+> [09-pros-cons-risks.md](09-pros-cons-risks.md).
 
 ## What Affora is
 
