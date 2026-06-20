@@ -22,5 +22,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { url: `${base}/affora/privacy`, lastModified: now, changeFrequency: "yearly", priority: 0.5 },
     { url: `${base}/intent-launcher/privacy`, lastModified: now, changeFrequency: "yearly", priority: 0.5 },
     { url: `${base}/intent-launcher/terms`, lastModified: now, changeFrequency: "yearly", priority: 0.5 },
+    { url: `${base}/intent-launcher/delete-data`, lastModified: now, changeFrequency: "yearly", priority: 0.5 },
   ];
 }

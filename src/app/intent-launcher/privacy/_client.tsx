@@ -283,6 +283,7 @@ export default function IntentLauncherPrivacyClient() {
             <p className="mono" style={{ marginTop: 4, fontSize: 12, color: "var(--text-3)" }}>app package — com.intentlauncher.app</p>
             <p style={{ marginTop: 4, display: "flex", gap: 16, flexWrap: "wrap" }}>
               <Link href="/intent-launcher/terms" style={{ color: I.accent, textDecoration: "underline", textUnderlineOffset: 3 }}>Terms &amp; Conditions →</Link>
+              <Link href="/intent-launcher/delete-data" style={{ color: "var(--text-3)", textDecoration: "underline", textUnderlineOffset: 3 }}>Delete your data →</Link>
             </p>
           </Section>
 
