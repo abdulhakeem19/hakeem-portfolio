@@ -188,6 +188,7 @@ export default function SnapPipePrivacyClient() {
               items={[
                 <>{strong("Photos / Media access")} ({mono("READ_MEDIA_IMAGES")} on Android 13+, scoped storage read on older versions; {mono("READ_MEDIA_VISUAL_USER_SELECTED")} for Android 14 partial access) — to read and manage your screenshots. SnapPipe works with full or &quot;selected photos&quot; access.</>,
                 <>{strong("Notifications")} (optional, {mono("POST_NOTIFICATIONS")}) — only if you enable cleanup reminders.</>,
+                <>{strong("Media management access")} (optional, {mono("MANAGE_MEDIA")}, Android 12+) — a special access you grant from {mono("Settings → Media management access")}. When enabled, SnapPipe can delete screenshots without Android asking you to confirm each one individually, so deletion shows only SnapPipe&apos;s own confirmation. You can grant or revoke it any time in Android Settings; SnapPipe works without it.</>,
                 <>SnapPipe does {strong("not")} request contacts, location, SMS, call log, microphone, camera, or all-files access.</>,
               ]}
             />
@@ -219,7 +220,7 @@ export default function SnapPipePrivacyClient() {
           </Section>
 
           <Section id="originals" n="06" title="Originals are never modified">
-            <p>Compression and the blur tool always write {strong("new")} files. Your original screenshots are left untouched. Deletion is routed through the Android system delete dialog, so you confirm every removal and files can be recovered from the system Trash where the OS supports it.</p>
+            <p>Compression and the blur tool always write {strong("new")} files. Your original screenshots are left untouched. Deletion always begins with SnapPipe&apos;s own confirmation; by default it is then routed through the Android system delete dialog (where files can be recovered from the system Trash if the OS supports it). If you grant {mono("MANAGE_MEDIA")}, that second system prompt is skipped, but your in-app confirmation always remains as the safety step.</p>
           </Section>
 
           <Section id="purchases" n="07" title="Purchases (SnapPipe Pro)">
