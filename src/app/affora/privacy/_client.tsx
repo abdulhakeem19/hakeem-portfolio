@@ -17,19 +17,20 @@ const A = {
   textSecondary: "#8B9B92",
 };
 
-const EFFECTIVE = "9 June 2026";
+const EFFECTIVE = "6 September 2026";
 
 const SECTIONS = [
-  { id: "what-we-collect", n: "01", t: "Information we collect" },
+  { id: "what-we-collect", n: "01", t: "Information the app collects" },
   { id: "how-stored", n: "02", t: "How your data is stored" },
   { id: "how-we-use", n: "03", t: "How we use your data" },
-  { id: "payments", n: "04", t: "Payments" },
-  { id: "sharing", n: "05", t: "Sharing" },
-  { id: "retention", n: "06", t: "Data retention & deletion" },
-  { id: "permissions", n: "07", t: "Permissions" },
-  { id: "children", n: "08", t: "Children" },
-  { id: "changes", n: "09", t: "Changes to this policy" },
-  { id: "contact", n: "10", t: "Contact" },
+  { id: "backup", n: "04", t: "Backup & restore" },
+  { id: "payments", n: "05", t: "In-app purchase" },
+  { id: "sharing", n: "06", t: "Sharing" },
+  { id: "retention", n: "07", t: "Data retention & deletion" },
+  { id: "permissions", n: "08", t: "Permissions" },
+  { id: "children", n: "09", t: "Children" },
+  { id: "changes", n: "10", t: "Changes to this policy" },
+  { id: "contact", n: "11", t: "Contact" },
 ];
 
 function Mark() {
@@ -114,8 +115,9 @@ export default function AfforaPrivacyClient() {
           </motion.h1>
 
           <motion.p variants={fadeUp} style={{ fontSize: 16, color: "var(--text-2)", maxWidth: 680, marginTop: 20, lineHeight: 1.65 }}>
-            Affora helps you understand and manage your personal finances. This policy explains
-            what we collect, why, and your choices.
+            Affora is a fully offline expense tracker. There is no account, no backend, and no
+            server — this policy is short because there is almost nothing for us to say: your data
+            never leaves your phone.
           </motion.p>
 
           {/* promise cards */}
@@ -124,9 +126,9 @@ export default function AfforaPrivacyClient() {
             style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(220px, 1fr))", gap: 14, marginTop: 36 }}
           >
             {[
-              ["Locally stored", "Most of your financial data lives on your device, encrypted at rest where the OS supports it."],
-              ["Optional cloud sync", "Cloud backup is opt-in, sign-in-gated, and all traffic uses HTTPS."],
-              ["You own your data", "Clear local data, sign out, or delete your account and cloud data at any time."],
+              ["100% offline", "No account, no sign-in, no server. Nothing the app knows about you can be transmitted anywhere."],
+              ["Backup is yours to hold", "There's no cloud. Export a backup file from the app and keep it wherever you choose — we never see it."],
+              ["One-time purchase", "Affora Lifetime is a single purchase through Google Play Billing, not a subscription. We never see your payment details."],
             ].map(([t, d]) => (
               <div key={t} style={{ background: A.greenTint, border: `1px solid ${A.border}`, borderRadius: 12, padding: 18 }}>
                 <div style={{ display: "flex", alignItems: "center", gap: 8, marginBottom: 8 }}>
@@ -162,73 +164,61 @@ export default function AfforaPrivacyClient() {
       >
         <div style={{ display: "flex", flexDirection: "column", gap: 16, maxWidth: 860, margin: "0 auto" }}>
 
-          <Section id="what-we-collect" n="01" title="Information we collect">
-            <p><strong style={{ color: "var(--text)" }}>Account information (via Google Sign-In).</strong> When you sign in, we receive your name, email address, and profile picture from Google to create and identify your account.</p>
-            <p><strong style={{ color: "var(--text)" }}>Financial information you enter.</strong> Your salary, committed expenses (bills, EMIs), transactions, savings goals, debts, streaks, net-worth entries, and related notes. You provide this directly; we do not import it from your bank.</p>
-            <p><strong style={{ color: "var(--text)" }}>Household information.</strong> If you link a household, we store the household membership and invite code so you and your partner can share goals.</p>
+          <Section id="what-we-collect" n="01" title="Information the app collects">
+            <p><strong style={{ color: A.green }}>Nothing is sent to us.</strong> Affora has no account, no sign-in, and no server to send data to. Everything below is stored only on your device, in a local database this app cannot transmit anywhere.</p>
+            <Bullets
+              items={[
+                <><strong style={{ color: "var(--text)" }}>Financial information you enter.</strong> Salary, committed expenses (bills, EMIs), transactions, savings goals, notes, categories, and budgets. You type this in directly; nothing is imported from your bank.</>,
+                <><strong style={{ color: "var(--text)" }}>Transaction messages (optional, Android).</strong> If you turn on Auto-capture and grant notification access, Affora reads bank/UPI transaction notifications <strong style={{ color: "var(--text)" }}>on your device</strong> to draft transactions for your review. This is parsed entirely on-device and never uploaded anywhere — there is no server to upload it to. You choose exactly which apps it looks at, and you review every draft before it&apos;s saved.</>,
+                <><strong style={{ color: "var(--text)" }}>Account balances shown in those messages.</strong> When a message you received already states a balance (for example &ldquo;Avl Bal: Rs.44,874&rdquo;), Affora remembers that figure against the matching account so you can see it in one place, along with the time it was seen. Affora never connects to your bank and cannot fetch a balance — it only ever keeps what a message you already had said, on your device.</>,
+                <><strong style={{ color: "var(--text)" }}>A profile name and photo, if you add one.</strong> Stored locally only.</>,
+              ]}
+            />
           </Section>
 
           <Section id="how-stored" n="02" title="How your data is stored">
-            <Bullets
-              items={[
-                <>Most of your financial data is stored <strong style={{ color: A.green }}>locally on your device</strong> (encrypted at rest by the operating system where supported).</>,
-                <>Your data syncs to our backend server (tied to your account) so it survives reinstalls and device changes, and to enable partner linking. All network traffic uses <strong style={{ color: "var(--text)" }}>HTTPS</strong>.</>,
-              ]}
-            />
+            <p>Everything lives in a local database on your device. Nothing is encrypted in transit, because nothing is ever transmitted.</p>
           </Section>
 
           <Section id="how-we-use" n="03" title="How we use your data">
+            <p>We don&apos;t. There is no backend to use it — the app reads and writes only to its own local database to run its features (Safe-to-Spend, budgets, goals, insights). We do not sell your data, share it, or use it for advertising, because we never receive it in the first place.</p>
+          </Section>
+
+          <Section id="backup" n="04" title="Backup & restore">
+            <p>Affora has no cloud, so <strong style={{ color: "var(--text)" }}>you</strong> are responsible for your own backup. Profile → Backup &amp; restore lets you export everything to a single file you control. We never see this file — it goes directly from your device to wherever you choose to put it.</p>
+          </Section>
+
+          <Section id="payments" n="05" title="In-app purchase">
+            <p>Affora Lifetime is a one-time purchase handled entirely by <strong style={{ color: "var(--text)" }}>Google Play Billing</strong>. We do not receive or store your payment details.</p>
+          </Section>
+
+          <Section id="sharing" n="06" title="Sharing">
+            <p>We share nothing, because we never receive anything. The one exception: buying Affora Lifetime goes through Google Play Billing, governed by Google&apos;s own privacy policy.</p>
+          </Section>
+
+          <Section id="retention" n="07" title="Data retention & deletion">
+            <p>Everything is already only on your device — deleting the app deletes everything. You can also wipe it without uninstalling: <strong style={{ color: "var(--text)" }}>Profile → Clear all data</strong>. There is no server-side account to separately delete.</p>
+          </Section>
+
+          <Section id="permissions" n="08" title="Permissions">
             <Bullets
               items={[
-                "To provide the app's features (budgets, goals, gamification, household sharing).",
-                "To authenticate you and keep you signed in.",
-                <>We do <strong style={{ color: "var(--text)" }}>not</strong> sell your data or use it for advertising.</>,
+                <><strong style={{ color: "var(--text)" }}>Notifications</strong> — the optional daily Safe-to-Spend reminder and spend nudges, generated entirely on-device.</>,
+                <><strong style={{ color: "var(--text)" }}>Notification access (optional, Android)</strong> — only if you enable Auto-capture, as described above. Never transmitted anywhere.</>,
+                <><strong style={{ color: "var(--text)" }}>Internet</strong> — used only for Google Play&apos;s own purchase check when you buy Affora Lifetime. The app makes no other network request.</>,
               ]}
             />
           </Section>
 
-          <Section id="payments" n="04" title="Payments">
-            <p>Affora Pro is an optional auto-renewing subscription processed by <strong style={{ color: "var(--text)" }}>Google Play</strong>. We do not receive or store your payment-card details.</p>
+          <Section id="children" n="09" title="Children">
+            <p>Affora is not directed at children under 13 and we do not knowingly collect their data — and since we don&apos;t collect anyone&apos;s data, there is nothing to collect from anyone.</p>
           </Section>
 
-          <Section id="sharing" n="05" title="Sharing">
-            <Bullets
-              items={[
-                <><strong style={{ color: "var(--text)" }}>Google</strong> processes your sign-in and any Affora Pro payment. See Google's Privacy Policy.</>,
-                <><strong style={{ color: "var(--text)" }}>Household partners</strong> can see shared household goals you choose to create.</>,
-                <>We do <strong style={{ color: "var(--text)" }}>not</strong> share your personal financial data with any other third party, except where required by law.</>,
-              ]}
-            />
-          </Section>
-
-          <Section id="retention" n="06" title="Data retention & deletion">
-            <Bullets
-              items={[
-                <>You can clear all local data any time from <strong style={{ color: "var(--text)" }}>Profile → Clear All Data</strong> in the app.</>,
-                <>You can sign out to remove your session from the device.</>,
-                <>To delete your account and all associated data, go to <strong style={{ color: "var(--text)" }}>Profile → Delete account</strong> in the app, or contact us at the email below. Deletion is permanent.</>,
-              ]}
-            />
-          </Section>
-
-          <Section id="permissions" n="07" title="Permissions">
-            <Bullets
-              items={[
-                <><strong style={{ color: "var(--text)" }}>Notifications</strong> — daily money-ritual reminders and bill nudges.</>,
-                <><strong style={{ color: "var(--text)" }}>Internet</strong> — to sign in and sync your data.</>,
-              ]}
-            />
-          </Section>
-
-          <Section id="children" n="08" title="Children">
-            <p>Affora is not directed at children under 13 and we do not knowingly collect their data.</p>
-          </Section>
-
-          <Section id="changes" n="09" title="Changes to this policy">
+          <Section id="changes" n="10" title="Changes to this policy">
             <p>We may update this policy as Affora evolves. Material changes will be reflected here with a new effective date.</p>
           </Section>
 
-          <Section id="contact" n="10" title="Contact">
+          <Section id="contact" n="11" title="Contact">
             <p>Questions or deletion requests — reach out:</p>
             <a
               href="mailto:buildwithhakeem@gmail.com"
