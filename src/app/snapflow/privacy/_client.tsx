@@ -14,7 +14,7 @@ const I = {
   ink: "#0B1726",
 };
 
-const EFFECTIVE = "24 September 2026";
+const EFFECTIVE = "26 September 2026";
 
 const SECTIONS = [
   { id: "summary", n: "01", t: "The summary" },
@@ -122,7 +122,7 @@ export default function SnapFlowPrivacyClient() {
           <motion.p variants={fadeUp} style={{ fontSize: 16, color: "var(--text-2)", maxWidth: 680, marginTop: 20, lineHeight: 1.65 }}>
             SnapFlow is a calm puzzle game for Android developed by Vunexo Labs. This policy explains
             what the game does and does not do with your data. The short answer is that it collects
-            nothing and cannot connect to the internet.
+            nothing and cannot connect to the internet. Feedback reaches us only if you send it yourself.
           </motion.p>
 
           {/* promise cards */}
@@ -131,9 +131,9 @@ export default function SnapFlowPrivacyClient() {
             style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(220px, 1fr))", gap: 14, marginTop: 36 }}
           >
             {[
-              ["Nothing collected", "No account, no analytics, no ads, no crash-reporting SDKs and no developer backend. We never receive any data from the game."],
+              ["Nothing collected", "No account, no analytics, no ads, no crash-reporting SDKs and no developer backend. We never receive data from the game unless you send us feedback."],
               ["No internet access", "The game does not request the internet permission, so it has no way to send anything anywhere."],
-              ["Progress stays with you", "Stars, best move counts and settings are saved only on your device."],
+              ["Progress stays with you", "Stars, best move counts, settings and play stats are saved only on your device."],
             ].map(([t, d]) => (
               <div key={t} style={{ background: I.accentTint, border: `1px solid ${I.border}`, borderRadius: 12, padding: 18 }}>
                 <div style={{ display: "flex", alignItems: "center", gap: 8, marginBottom: 8 }}>
@@ -174,7 +174,16 @@ export default function SnapFlowPrivacyClient() {
           </Section>
 
           <Section id="collect" n="02" title="Data we collect">
-            <p>{accentStrong("None.")} Vunexo Labs never receives any information from SnapFlow: not your progress, your device details, how you play, nor anything else.</p>
+            <p>{accentStrong("None.")} Vunexo Labs never receives any information from SnapFlow automatically: not your progress, your device details, how you play, nor anything else.</p>
+            <p>The only exception is feedback that {strong("you choose to send")}. If you tap {strong("Send feedback")} (on the home or levels screen), the game prepares a message and opens your phone&apos;s share sheet. You pick the app (for example WhatsApp or email) and the recipient, and you can read or edit the message before sending. It contains:</p>
+            <Bullets
+              items={[
+                <>The feelings you tapped and any note you typed.</>,
+                <>The game version, how far you have got, your sound, music and haptics settings, and your screen size.</>,
+                <>Your play stats: tries, solves, moves, undos, restarts, hints and time spent per level.</>,
+              ]}
+            />
+            <p>It does not contain your name, contacts, location, device identifiers or anything outside the game. If you send it to us, we use it only to improve the game, and we delete it on request.</p>
           </Section>
 
           <Section id="device" n="03" title="What stays on your device">
@@ -183,9 +192,10 @@ export default function SnapFlowPrivacyClient() {
               items={[
                 <>{strong("Progress")}: stars earned and your best move count for each level.</>,
                 <>{strong("Settings")}: sound, music and haptics on or off, and which tips you have already seen.</>,
+                <>{strong("Play stats")}: tries, solves, moves, undos, restarts, hints and time per level, used only for the feedback message.</>,
               ]}
             />
-            <p>This data never leaves your device and is not linked to you in any way.</p>
+            <p>This data never leaves your device unless you send it yourself as described above, and it is not linked to you in any way.</p>
           </Section>
 
           <Section id="permissions" n="04" title="Permissions">
@@ -194,7 +204,7 @@ export default function SnapFlowPrivacyClient() {
 
           <Section id="third" n="05" title="Third parties">
             <p>The game contains no third-party SDKs that collect data: no ads, analytics or crash reporting. SnapFlow is distributed through {strong("Google Play")}, which handles installation and updates under{" "}
-              <a href="https://policies.google.com/privacy" target="_blank" rel="noopener noreferrer" style={{ color: I.accent, textDecoration: "underline", textUnderlineOffset: 3 }}>Google&apos;s Privacy Policy</a>.
+              <a href="https://policies.google.com/privacy" target="_blank" rel="noopener noreferrer" style={{ color: I.accent, textDecoration: "underline", textUnderlineOffset: 3 }}>Google&apos;s Privacy Policy</a>. Feedback you choose to share goes through the app you pick, under that app&apos;s own privacy policy.
             </p>
           </Section>
 
@@ -203,7 +213,7 @@ export default function SnapFlowPrivacyClient() {
           </Section>
 
           <Section id="retention" n="07" title="Data retention & deletion">
-            <p>Because we hold no data, there is nothing for us to retain or delete. Your local progress and settings are removed when you clear the app&apos;s data or uninstall the game.</p>
+            <p>Because we hold no data, there is nothing for us to retain or delete. Your local progress, settings and play stats are removed when you clear the app&apos;s data or uninstall the game. To have feedback you sent us deleted, email us.</p>
           </Section>
 
           <Section id="changes" n="08" title="Changes to this policy">
