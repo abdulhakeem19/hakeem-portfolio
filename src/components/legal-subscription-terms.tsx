@@ -1,0 +1,9 @@
+export function SubscriptionTerms({ app, color }: { app: string; color: string }) {
+  return <>
+    <p>{app} offers optional paid subscriptions and contains no advertising. The purchase screen and Google Play checkout show the available features, price, billing period, and any trial or introductory offer before you confirm. Offers can vary by region. Do not assume a trial is available unless it is shown.</p>
+    <p>Auto-renewing subscriptions continue until canceled. Manage or cancel renewal through <a href="https://play.google.com/store/account/subscriptions" style={{ color }}>Google Play → Payments &amp; subscriptions → Subscriptions</a>, using the Google account that made the purchase. After cancellation, access normally continues for the period already paid for. A prepaid plan, if offered, ends according to its checkout terms.</p>
+    <p>Uninstalling the app, clearing its data, or deleting app data does not cancel a subscription. A trial may convert to a paid subscription under the offer shown at checkout unless canceled in time. Google handles payment details; we do not receive your card or bank credentials.</p>
+    <p>Use the same Google Play account to recover an eligible active entitlement after reinstalling or changing devices, using the app’s restore option where available. Store checks require a connection. Pending or unsuccessful payments do not guarantee access; expired, refunded, or revoked entitlements may lose access to paid features.</p>
+    <p>For a refund, use <a href="https://support.google.com/googleplay/answer/2479637" style={{ color }}>Google Play’s refund process</a> or contact buildwithhakeem@gmail.com for help. Eligibility depends on your purchase, region, and applicable law. These terms do not limit mandatory consumer rights. Any earlier one-time purchase remains subject to the offer under which it was purchased.</p>
+  </>;
+}

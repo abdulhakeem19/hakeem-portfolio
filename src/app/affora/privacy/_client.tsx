@@ -17,14 +17,14 @@ const A = {
   textSecondary: "#8B9B92",
 };
 
-const EFFECTIVE = "6 September 2026";
+const EFFECTIVE = "7 November 2026";
 
 const SECTIONS = [
   { id: "what-we-collect", n: "01", t: "Information the app collects" },
   { id: "how-stored", n: "02", t: "How your data is stored" },
   { id: "how-we-use", n: "03", t: "How we use your data" },
   { id: "backup", n: "04", t: "Backup & restore" },
-  { id: "payments", n: "05", t: "In-app purchase" },
+  { id: "payments", n: "05", t: "Subscriptions" },
   { id: "sharing", n: "06", t: "Sharing" },
   { id: "retention", n: "07", t: "Data retention & deletion" },
   { id: "permissions", n: "08", t: "Permissions" },
@@ -126,9 +126,9 @@ export default function AfforaPrivacyClient() {
             style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(220px, 1fr))", gap: 14, marginTop: 36 }}
           >
             {[
-              ["100% offline", "No account, no sign-in, no server. Nothing the app knows about you can be transmitted anywhere."],
+              ["Local financial data", "No Affora account or developer cloud storage. Financial records stay on your device; Google Play separately handles subscriptions."],
               ["Backup is yours to hold", "There's no cloud. Export a backup file from the app and keep it wherever you choose — we never see it."],
-              ["One-time purchase", "Affora Lifetime is a single purchase through Google Play Billing, not a subscription. We never see your payment details."],
+              ["Optional subscriptions", "Google Play handles subscription billing. We never receive your card or bank credentials."],
             ].map(([t, d]) => (
               <div key={t} style={{ background: A.greenTint, border: `1px solid ${A.border}`, borderRadius: 12, padding: 18 }}>
                 <div style={{ display: "flex", alignItems: "center", gap: 8, marginBottom: 8 }}>
@@ -188,16 +188,17 @@ export default function AfforaPrivacyClient() {
             <p>Affora has no cloud, so <strong style={{ color: "var(--text)" }}>you</strong> are responsible for your own backup. Profile → Backup &amp; restore lets you export everything to a single file you control. We never see this file — it goes directly from your device to wherever you choose to put it.</p>
           </Section>
 
-          <Section id="payments" n="05" title="In-app purchase">
-            <p>Affora Lifetime is a one-time purchase handled entirely by <strong style={{ color: "var(--text)" }}>Google Play Billing</strong>. We do not receive or store your payment details.</p>
+          <Section id="payments" n="05" title="Subscriptions and Google Play Billing">
+            <p>Optional paid subscriptions are handled through Google Play Billing. Google processes payment details under its <a href="https://policies.google.com/privacy">Privacy Policy</a>; we do not receive your card or bank credentials.</p>
+            <p>The app receives product identifiers, purchase tokens, transaction and entitlement status as needed to provide paid features, check subscription eligibility, and restore purchases. Google maintains purchase and subscription records separately from local app data. Clearing app storage or uninstalling does not delete those records or cancel a subscription.</p>
           </Section>
 
           <Section id="sharing" n="06" title="Sharing">
-            <p>We share nothing, because we never receive anything. The one exception: buying Affora Lifetime goes through Google Play Billing, governed by Google&apos;s own privacy policy.</p>
+            <p>We share nothing, because we never receive anything. The one exception: subscription billing goes through Google Play Billing, governed by Google&apos;s own privacy policy.</p>
           </Section>
 
           <Section id="retention" n="07" title="Data retention & deletion">
-            <p>Everything is already only on your device — deleting the app deletes everything. You can also wipe it without uninstalling: <strong style={{ color: "var(--text)" }}>Profile → Clear all data</strong>. There is no server-side account to separately delete.</p>
+            <p>Financial entries are stored locally. Clearing app storage or uninstalling removes the local copy; exported backups and any Android backups must be managed separately. You can also wipe it without uninstalling: <strong style={{ color: "var(--text)" }}>Profile → Clear all data</strong>. There is no current server-side Affora account to separately delete. Google Play purchase records remain with Google, and subscriptions must be canceled separately in Google Play.</p>
           </Section>
 
           <Section id="permissions" n="08" title="Permissions">
@@ -205,7 +206,7 @@ export default function AfforaPrivacyClient() {
               items={[
                 <><strong style={{ color: "var(--text)" }}>Notifications</strong> — the optional daily Safe-to-Spend reminder and spend nudges, generated entirely on-device.</>,
                 <><strong style={{ color: "var(--text)" }}>Notification access (optional, Android)</strong> — only if you enable Auto-capture, as described above. Never transmitted anywhere.</>,
-                <><strong style={{ color: "var(--text)" }}>Internet</strong> — used only for Google Play&apos;s own purchase check when you buy Affora Lifetime. The app makes no other network request.</>,
+                <><strong style={{ color: "var(--text)" }}>Internet</strong> — used only for Google Play&apos;s own purchase check for subscription purchases, entitlement checks, and restoration. Financial entries are not uploaded as part of billing.</>,
               ]}
             />
           </Section>

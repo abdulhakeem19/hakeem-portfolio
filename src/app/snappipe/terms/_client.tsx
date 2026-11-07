@@ -2,6 +2,7 @@
 
 import { motion } from "framer-motion";
 import Link from "next/link";
+import { SubscriptionTerms } from "@/components/legal-subscription-terms";
 import { Footer } from "@/components/footer";
 import { fadeUp, stagger } from "@/lib/animations";
 
@@ -18,7 +19,7 @@ const S = {
   ink: "#FFFFFF",
 };
 
-const EFFECTIVE = "26 June 2026";
+const EFFECTIVE = "7 November 2026";
 
 const SECTIONS = [
   { id: "the-service", n: "01", t: "The service" },
@@ -165,8 +166,8 @@ export default function SnapPipeTermsClient() {
             <p>You agree not to use SnapPipe to break the law, to infringe others&apos; rights, or to process content you are not permitted to handle. You agree not to attempt to reverse engineer, tamper with, or misuse the app beyond what the law allows.</p>
           </Section>
 
-          <Section id="pro" n="04" title="SnapPipe Pro">
-            <p>Some features are part of an optional one-time purchase, &quot;SnapPipe Pro&quot;. Purchases are handled by your app store and are subject to that store&apos;s terms and refund policies. The set of free vs. Pro features may change over time.</p>
+          <Section id="pro" n="04" title="SnapPipe subscriptions">
+            <SubscriptionTerms app="SnapPipe" color={S.accent} />
           </Section>
 
           <Section id="warranty" n="05" title="No warranty">
@@ -174,7 +175,7 @@ export default function SnapPipeTermsClient() {
           </Section>
 
           <Section id="liability" n="06" title="Limitation of liability">
-            <p>To the maximum extent permitted by law, Vunexo Labs is not liable for any indirect, incidental, special, consequential, or punitive damages, or for any loss of data, files, or profits, arising from your use of (or inability to use) SnapPipe — including any accidental deletion or modification of your files. Because SnapPipe operates locally and stores nothing on our side, recovery of lost on-device data is your responsibility.</p>
+            <p>To the maximum extent permitted by law, Vunexo Labs is not liable for any indirect, incidental, special, consequential, or punitive damages, or for any loss of data, files, or profits, arising from your use of (or inability to use) SnapPipe — including any accidental deletion or modification of your files. Because SnapPipe operates locally and stores nothing on our side, recovery of lost on-device data is your responsibility. Nothing in these terms limits mandatory consumer rights or excludes liability that cannot legally be excluded.</p>
           </Section>
 
           <Section id="privacy" n="07" title="Privacy">
