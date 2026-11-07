@@ -2,6 +2,7 @@
 
 import { motion } from "framer-motion";
 import Link from "next/link";
+import { SubscriptionTerms } from "@/components/legal-subscription-terms";
 import { Footer } from "@/components/footer";
 import { fadeUp, stagger } from "@/lib/animations";
 
@@ -17,18 +18,18 @@ const A = {
   textSecondary: "#8B9B92",
 };
 
-const EFFECTIVE = "9 June 2026";
+const EFFECTIVE = "7 November 2026";
 
 const SECTIONS = [
   { id: "what-affora-is", n: "01", t: "What Affora is" },
-  { id: "your-account", n: "02", t: "Your account" },
+  { id: "your-account", n: "02", t: "Local use" },
   { id: "your-data", n: "03", t: "Your data and content" },
   { id: "acceptable-use", n: "04", t: "Acceptable use" },
-  { id: "affora-pro", n: "05", t: "Affora Pro & subscriptions" },
-  { id: "household", n: "06", t: "Household / Couples features" },
+  { id: "affora-pro", n: "05", t: "Subscriptions" },
+  { id: "household", n: "06", t: "Backups and local storage" },
   { id: "availability", n: "07", t: "Availability & changes" },
   { id: "liability", n: "08", t: "Limitation of liability" },
-  { id: "deletion", n: "09", t: "Account deletion" },
+  { id: "deletion", n: "09", t: "Data deletion" },
   { id: "contact", n: "10", t: "Contact" },
 ];
 
@@ -115,7 +116,7 @@ export default function AfforaPolicyClient() {
 
           <motion.p variants={fadeUp} style={{ fontSize: 16, color: "var(--text-2)", maxWidth: 680, marginTop: 20, lineHeight: 1.65 }}>
             Welcome to Affora. These Terms govern your use of the Affora mobile app and related
-            services. By creating an account or using Affora, you agree to these Terms. If you do not
+            services. By using Affora, you agree to these Terms. If you do not
             agree, please do not use the app.
           </motion.p>
         </motion.div>
@@ -147,45 +148,25 @@ export default function AfforaPolicyClient() {
             <p>Affora is a personal-finance app that helps you understand your spendable money, set savings goals, track debts and bills, and build better money habits. Affora is an informational and organisational tool. <strong style={{ color: "var(--text)" }}>It is not a bank, lender, payment service, investment adviser, or a provider of financial, tax, or legal advice.</strong> You are responsible for your own financial decisions.</p>
           </Section>
 
-          <Section id="your-account" n="02" title="Your account">
-            <p>You sign in with Google. You are responsible for keeping access to your Google account secure and for the activity under your Affora account. You must be at least 13 years old (or the minimum digital-consent age in your country) to use Affora.</p>
+          <Section id="your-account" n="02" title="Local use and device security">
+            <p>The current Affora app works locally and does not require an Affora account or Google sign-in. Google Play may require its own account for subscriptions. Keep your device secure and only allow access to people you trust. If you are under the age of legal majority where you live, obtain a parent or guardian’s approval for purchases.</p>
           </Section>
 
           <Section id="your-data" n="03" title="Your data and content">
-            <p>The financial information you enter (salary, expenses, goals, debts, etc.) belongs to you. You grant us permission to store and process it solely to provide the app's features, including syncing it to your account. Our handling of your data is described in our{" "}
-              <Link href="/affora/privacy" style={{ color: A.green, textDecoration: "underline", textUnderlineOffset: 3 }}>Privacy Policy</Link>,{" "}
-              which forms part of these Terms.
-            </p>
+            <p>Your financial entries belong to you and are stored locally. Optional transaction-notification parsing is performed on-device. Affora does not connect to your bank to move money or retrieve balances. You are responsible for reviewing drafts and calculations before relying on them.</p>
+            <p>Our <Link href="/affora/privacy" style={{ color: A.green }}>Privacy Policy</Link> explains local storage, optional permissions, backups, and Google Play Billing.</p>
           </Section>
 
           <Section id="acceptable-use" n="04" title="Acceptable use">
-            <p>You agree not to misuse Affora — including:</p>
-            <Bullets
-              items={[
-                "Attempting to access other users' data",
-                "Disrupting or overloading the service",
-                "Reverse-engineering the app",
-                "Using it for any unlawful purpose",
-              ]}
-            />
-            <p>We may suspend or terminate accounts that violate these Terms.</p>
+            <p>Use Affora lawfully and only process financial information you are entitled to use. Do not bypass paid-feature checks, redistribute the app or its assets without permission, or interfere with its operation. These restrictions do not limit activities expressly permitted by applicable law.</p>
           </Section>
 
-          <Section id="affora-pro" n="05" title="Affora Pro & subscriptions">
-            <p>The core app is free. <strong style={{ color: "var(--text)" }}>Affora Pro</strong> is an optional auto-renewing subscription (₹99/month, with any free-trial period shown at purchase) that unlocks additional features.</p>
-            <Bullets
-              items={[
-                <>Subscriptions are billed and managed through your <strong style={{ color: "var(--text)" }}>Google Play</strong> account.</>,
-                "They renew automatically until cancelled.",
-                "You can cancel anytime in Google Play; cancellation takes effect at the end of the current billing period.",
-                "Refunds are handled per Google Play's policies.",
-                "We may change Pro pricing or features with reasonable notice.",
-              ]}
-            />
+          <Section id="affora-pro" n="05" title="Subscriptions and Google Play Billing">
+            <SubscriptionTerms app="Affora" color={A.green} />
           </Section>
 
-          <Section id="household" n="06" title="Household / Couples features">
-            <p>If you link a household, certain shared information (e.g. shared goals) becomes visible to the members you invite. Only invite people you trust. Individual transactions remain private to each member.</p>
+          <Section id="household" n="06" title="Backups and local storage">
+            <p>The current app does not provide developer-operated cloud sync or shared household accounts. Export backups through Profile → Backup &amp; restore and keep them somewhere safe. An exported file is outside the app’s control; protect or delete copies separately. We cannot recover a lost local database or a backup we never received.</p>
           </Section>
 
           <Section id="availability" n="07" title="Availability & changes">
@@ -193,11 +174,12 @@ export default function AfforaPolicyClient() {
           </Section>
 
           <Section id="liability" n="08" title="Limitation of liability">
-            <p>To the maximum extent permitted by law, Affora and its creator are not liable for any indirect, incidental, or consequential losses, or for financial decisions you make based on information in the app. Affora is a budgeting aid, not a guarantee of any financial outcome.</p>
+            <p>To the maximum extent permitted by law, Affora and its creator are not liable for any indirect, incidental, or consequential losses, or for financial decisions you make based on information in the app. Affora is a budgeting aid, not a guarantee of any financial outcome. Nothing in these terms excludes liability that cannot legally be excluded or limits mandatory consumer rights.</p>
           </Section>
 
-          <Section id="deletion" n="09" title="Account deletion">
-            <p>You can delete your account and all associated data at any time from <strong style={{ color: "var(--text)" }}>Profile → Delete account</strong> in the app, or by contacting us at the email below. Deletion is permanent.</p>
+          <Section id="deletion" n="09" title="Data deletion">
+            <p>Use Profile → Clear all data or Android’s clear-storage controls to remove local app data. Manage exported backup copies separately. There is no current Affora server account to delete. Subscription cancellation is a separate step in Google Play.</p>
+            <p>See <Link href="/affora/delete-account" style={{ color: A.green }}>Data deletion instructions</Link>. If your question concerns a legacy cloud-account version, email support and specify the version; do not send financial records or passwords.</p>
           </Section>
 
           <Section id="contact" n="10" title="Contact">

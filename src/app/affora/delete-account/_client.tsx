@@ -15,7 +15,7 @@ const A = {
   redBorder: "rgba(239,68,68,0.20)",
 };
 
-const EFFECTIVE = "9 June 2026";
+const EFFECTIVE = "7 November 2026";
 
 function Mark() {
   return (
@@ -121,14 +121,11 @@ export default function AfforaDeleteAccountClient() {
             variants={fadeUp}
             style={{ fontSize: "clamp(32px, 5vw, 56px)", fontWeight: 500, letterSpacing: "-0.04em", lineHeight: 1.1, marginTop: 32, maxWidth: 900 }}
           >
-            Delete your account{" "}
-            <span className="serif" style={{ color: A.green }}>&amp; data</span>
+            Delete your{" "}
+            <span className="serif" style={{ color: A.green }}>data</span>
           </motion.h1>
 
-          <motion.p variants={fadeUp} style={{ fontSize: 16, color: "var(--text-2)", maxWidth: 640, marginTop: 20, lineHeight: 1.65 }}>
-            You have two ways to delete your Affora account and all associated data.
-            Both options are permanent and cannot be undone.
-          </motion.p>
+          <motion.p variants={fadeUp} style={{ color: "var(--text-2)", marginTop: 20, lineHeight: 1.7 }}>The current Affora app stores financial data on your device and does not require an Affora account. Here is how to remove local data, handle backups, and manage your subscription separately.</motion.p>
         </motion.div>
       </section>
 
@@ -143,50 +140,20 @@ export default function AfforaDeleteAccountClient() {
       >
         <div style={{ display: "flex", flexDirection: "column", gap: 16, maxWidth: 860, margin: "0 auto" }}>
 
-          <Section id="in-app" n="01" title="Delete in the app (instant)">
-            <ol style={{ listStyle: "none", padding: 0, margin: 0, display: "flex", flexDirection: "column", gap: 10 }}>
-              <Step n={1}>Open <strong style={{ color: "var(--text)" }}>Affora</strong> and sign in.</Step>
-              <Step n={2}>Go to the <strong style={{ color: "var(--text)" }}>Profile</strong> tab.</Step>
-              <Step n={3}>Scroll to <strong style={{ color: "var(--text)" }}>Account</strong> and tap <strong style={{ color: "var(--text)" }}>Delete account</strong>.</Step>
-              <Step n={4}>Confirm. Your account and all associated data are permanently deleted from our servers, removed from your device, and you are signed out.</Step>
-            </ol>
+          <Section id="in-app" n="01" title="Delete local data">
+            <p>Open Affora → Profile → Clear all data and review the confirmation carefully. Alternatively, use Android Settings → Apps → Affora → Storage → Clear storage. These actions remove the app’s local data. Export a backup first if you want to keep a copy.</p>
           </Section>
 
-          <Section id="by-email" n="02" title="Request by email">
-            <p>
-              Email{" "}
-              <a href="mailto:buildwithhakeem@gmail.com" style={{ color: A.green }}>buildwithhakeem@gmail.com</a>{" "}
-              from the address you used to sign in, with the subject{" "}
-              <span className="mono" style={{ fontSize: 13, background: A.greenTint, border: `1px solid ${A.border}`, borderRadius: 6, padding: "2px 8px", color: A.green }}>
-                Delete my Affora account
-              </span>.{" "}
-              We will delete your account and data within <strong style={{ color: "var(--text)" }}>7 days</strong> and confirm by reply.
-            </p>
+          <Section id="by-email" n="02" title="Contact support">
+            <p>For privacy questions, feedback deletion, or a legacy cloud-account version, email <a href="mailto:buildwithhakeem@gmail.com" style={{ color: A.green }}>buildwithhakeem@gmail.com</a>. State the app version and what you want removed. We cannot remotely erase a local database or a backup we never received. Do not include passwords or financial records.</p>
           </Section>
 
-          <Section id="what-is-deleted" n="03" title="What is deleted">
-            <p>Deleting your account permanently removes <strong style={{ color: "var(--text)" }}>all</strong> of the following from our servers:</p>
-            <Bullets
-              items={[
-                "Your account profile — name, email address, and profile picture.",
-                "All financial data you entered — salary, transactions, committed expenses and bills, savings goals, debts, budgets and accounts.",
-                "Gamification data — streaks and XP.",
-                "Household / couples links and shared-goal membership.",
-              ]}
-            />
-            <p style={{ color: "var(--text-3)" }}>The copy stored locally on your device is also wiped when you delete in the app.</p>
+          <Section id="what-is-deleted" n="03" title="What is removed">
+            <p>Clearing app storage removes the current installation’s financial entries, settings, and local metadata. Uninstalling removes app-private data. Exported backup files and Android or Google backups are separate copies; delete them at their storage locations if required.</p>
           </Section>
 
-          <Section id="retention" n="04" title="Data retention">
-            <div style={{ background: A.greenTint, border: `1px solid ${A.border}`, borderRadius: 12, padding: "16px 20px", display: "flex", flexDirection: "column", gap: 8 }}>
-              <Bullets
-                items={[
-                  <>Your data is removed from our active systems <strong style={{ color: "var(--text)" }}>immediately</strong> on deletion.</>,
-                  <>Encrypted database backups are automatically purged within <strong style={{ color: "var(--text)" }}>30 days</strong>.</>,
-                  <>We do not retain your personal data after that, and we never sold or shared it with third parties.</>,
-                ]}
-              />
-            </div>
+          <Section id="retention" n="04" title="Subscriptions and retained copies">
+            <p>There is no current developer-hosted financial database to erase. Google Play retains billing records under its policies. Uninstalling, clearing app data, or deleting a backup does not cancel an active subscription. Manage renewal through <a href="https://play.google.com/store/account/subscriptions" style={{ color: A.green }}>Google Play subscriptions</a>.</p>
           </Section>
 
           <Section id="contact" n="05" title="Contact">

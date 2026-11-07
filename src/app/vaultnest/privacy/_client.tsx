@@ -1,6 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
+import Link from "next/link";
 import { Footer } from "@/components/footer";
 import { fadeUp, stagger } from "@/lib/animations";
 
@@ -17,7 +18,7 @@ const I = {
   ink: "#04140E",
 };
 
-const EFFECTIVE = "6 July 2026";
+const EFFECTIVE = "7 November 2026";
 
 const SECTIONS = [
   { id: "summary", n: "01", t: "The summary" },
@@ -119,7 +120,7 @@ export default function VaultNestPrivacyClient() {
           <motion.p variants={fadeUp} style={{ fontSize: 16, color: "var(--text-2)", maxWidth: 680, marginTop: 20, lineHeight: 1.65 }}>
             VaultNest File Vault is a privacy-first file manager for Android developed by Vunexo Labs.
             This policy explains what the app does and does not do with your data — and the short answer
-            is that it does not collect, transmit, or sell any of it.
+            is that we do not receive your files; transfers go directly to services you connect. Google Play separately processes subscription billing.
           </motion.p>
 
           {/* promise cards */}
@@ -129,7 +130,7 @@ export default function VaultNestPrivacyClient() {
           >
             {[
               ["Nothing collected", "No analytics, no ads, no crash-reporting SDKs, no developer backend. We never receive your files or personal data."],
-              ["Everything on-device", "Browsing, organizing, and cleaning up happens on your device. File contents are never sent anywhere by the app."],
+              ["Everything on-device", "Browsing, organizing, and cleaning up happens on your device. Files are transferred only when you use connected services or sharing features."],
               ["You choose the endpoints", "Cloud, NAS, and PC transfers go directly between your device and services you connect. Nothing passes through us."],
             ].map(([t, d]) => (
               <div key={t} style={{ background: I.accentTint, border: `1px solid ${I.border}`, borderRadius: 12, padding: 18 }}>
@@ -182,7 +183,7 @@ export default function VaultNestPrivacyClient() {
           </Section>
 
           <Section id="files" n="03" title="Access to files on your device">
-            <p>To function as a file manager, VaultNest requests access to files and media on your device (including {strong("“All files access”")} / <span className="mono">MANAGE_EXTERNAL_STORAGE</span> on supported versions). This access is used {accentStrong("only")} to let you browse, view, organize, move, copy, delete, restore, and clean up files {strong("on your own device")}, at your direction. File contents are never sent anywhere by the app.</p>
+            <p>To function as a file manager, VaultNest requests access to files and media on your device (including {strong("“All files access”")} / <span className="mono">MANAGE_EXTERNAL_STORAGE</span> on supported versions). This access is used {accentStrong("only")} to let you browse, view, organize, move, copy, delete, restore, and clean up files {strong("on your own device")}, at your direction. Files are transferred only when you use connected services or sharing features.</p>
           </Section>
 
           <Section id="network" n="04" title="Features that use the network">
@@ -196,10 +197,9 @@ export default function VaultNestPrivacyClient() {
             />
           </Section>
 
-          <Section id="purchases" n="05" title="In-app purchases">
-            <p>The optional {strong("“Pro”")} upgrade is processed by {strong("Google Play Billing")}. Google handles the payment; VaultNest never receives or stores your payment details. Google&apos;s processing is governed by{" "}
-              <a href="https://policies.google.com/privacy" target="_blank" rel="noopener noreferrer" style={{ color: I.accent, textDecoration: "underline", textUnderlineOffset: 3 }}>Google&apos;s Privacy Policy</a>.
-            </p>
+          <Section id="purchases" n="05" title="Subscriptions and Google Play Billing">
+            <p>Optional paid subscriptions are handled through Google Play Billing. Google processes payment details under its <a href="https://policies.google.com/privacy">Privacy Policy</a>; we do not receive your card or bank credentials.</p>
+            <p>The app receives product identifiers, purchase tokens, transaction and entitlement status as needed to provide paid features, check subscription eligibility, and restore purchases. Google maintains purchase and subscription records separately from local app data. Clearing app storage or uninstalling does not delete those records or cancel a subscription.</p>
           </Section>
 
           <Section id="permissions" n="06" title="Permissions summary">
@@ -220,7 +220,7 @@ export default function VaultNestPrivacyClient() {
           </Section>
 
           <Section id="retention" n="08" title="Data retention & deletion">
-            <p>Because we hold no data, there is nothing for us to retain or delete on a server. All app data (settings, encrypted tokens/credentials, recycle-bin contents) lives on your device and is removed when you clear the app&apos;s data or uninstall it. Disconnecting a cloud or remote connection removes its stored tokens/credentials immediately.</p>
+            <p>Because we hold no data, there is nothing for us to retain or delete on a server. All app data (settings, encrypted tokens/credentials, recycle-bin contents) lives on your device and is removed when you clear the app&apos;s data or uninstall it. Disconnecting a cloud or remote connection removes its stored tokens/credentials immediately. Files already transferred to cloud providers or remote servers, exported copies, and Google Play billing records remain separate. Uninstalling does not cancel a subscription.</p>
           </Section>
 
           <Section id="changes" n="09" title="Changes to this policy">
@@ -237,6 +237,7 @@ export default function VaultNestPrivacyClient() {
               ✉ buildwithhakeem@gmail.com
             </a>
             <p className="mono" style={{ marginTop: 4, fontSize: 12, color: "var(--text-3)" }}>VaultNest File Vault — Vunexo Labs</p>
+            <p><Link href="/vaultnest/terms" style={{ color: I.accent }}>Terms of Service →</Link></p>
           </Section>
 
         </div>

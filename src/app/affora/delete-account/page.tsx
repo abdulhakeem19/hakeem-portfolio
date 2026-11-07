@@ -2,16 +2,16 @@ import type { Metadata } from "next";
 import AfforaDeleteAccountClient from "./_client";
 
 export const metadata: Metadata = {
-  title: "Affora — Delete your account & data",
+  title: "Affora — Delete your data",
   description:
-    "How to delete your Affora account and all associated data — instantly in the app or by emailing us.",
+    "How to clear Affora local data, manage backup copies, and cancel subscriptions separately.",
   alternates: { canonical: "https://buildwithhakeem.dev/affora/delete-account" },
   openGraph: {
     type: "article",
     url: "https://buildwithhakeem.dev/affora/delete-account",
-    title: "Affora — Delete your account & data",
+    title: "Affora — Delete your data",
     description:
-      "Delete your Affora account instantly from Profile → Delete account, or request deletion by email within 7 days.",
+      "Clear local Affora data, manage backups, and keep subscription cancellation separate.",
   },
 };
 

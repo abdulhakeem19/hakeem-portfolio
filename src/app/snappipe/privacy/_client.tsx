@@ -18,7 +18,7 @@ const S = {
   ink: "#FFFFFF",
 };
 
-const EFFECTIVE = "26 June 2026";
+const EFFECTIVE = "7 November 2026";
 
 const SECTIONS = [
   { id: "who-we-are", n: "01", t: "Who we are" },
@@ -223,8 +223,9 @@ export default function SnapPipePrivacyClient() {
             <p>Compression and the blur tool always write {strong("new")} files. Your original screenshots are left untouched. Deletion always begins with SnapPipe&apos;s own confirmation; by default it is then routed through the Android system delete dialog (where files can be recovered from the system Trash if the OS supports it). If you grant {mono("MANAGE_MEDIA")}, that second system prompt is skipped, but your in-app confirmation always remains as the safety step.</p>
           </Section>
 
-          <Section id="purchases" n="07" title="Purchases (SnapPipe Pro)">
-            <p>SnapPipe Pro is a one-time, optional unlock for advanced features. Any purchase is processed by the app store (e.g. Google Play). We do not receive or store your payment details; the store handles the transaction under its own privacy policy.</p>
+          <Section id="purchases" n="07" title="Subscriptions and Google Play Billing">
+            <p>Optional paid subscriptions are handled through Google Play Billing. Google processes payment details under its <a href="https://policies.google.com/privacy">Privacy Policy</a>; we do not receive your card or bank credentials.</p>
+            <p>The app receives product identifiers, purchase tokens, transaction and entitlement status as needed to provide paid features, check subscription eligibility, and restore purchases. Google maintains purchase and subscription records separately from local app data. Clearing app storage or uninstalling does not delete those records or cancel a subscription.</p>
           </Section>
 
           <Section id="children" n="08" title="Children's privacy">
